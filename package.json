@@ -1,0 +1,25 @@
+{
+  "name": "aprendiendo-ingles-con-ty",
+  "version": "1.0.0",
+  "description": "Juego educativo para aprender inglés con Ty, el Rottweiler amigable",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx http-server . -p 3000 -o",
+    "dev": "npx live-server --port=3000 --open=index.html",
+    "serve": "python -m http.server 3000"
+  },
+  "keywords": [
+    "educativo",
+    "ingles",
+    "juego",
+    "aprendizaje",
+    "niños",
+    "interactivo"
+  ],
+  "author": "Equipo de Desarrollo",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^14.1.0",
+    "live-server": "^1.2.2"
+  }
+} 

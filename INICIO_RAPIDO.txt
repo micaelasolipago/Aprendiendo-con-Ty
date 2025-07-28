@@ -1,0 +1,39 @@
+🐕 APRENDIENDO INGLÉS CON TY - INICIO RÁPIDO
+============================================
+
+❌ PROBLEMA: "No funciona"
+✅ SOLUCIÓN: Usar servidor HTTP
+
+📋 PASOS SIMPLES:
+
+1. Abre PowerShell/CMD en esta carpeta
+2. Ejecuta UNO de estos comandos:
+
+   npx http-server . -p 3000 -o
+   
+   O si no funciona:
+   
+   python -m http.server 3000
+
+3. Abre: http://localhost:3000
+
+🪟 WINDOWS - MÉTODO MÁS FÁCIL:
+   Doble clic en: iniciar-juego.bat
+
+🔍 SI NO FUNCIONA:
+   Abre: test.html para diagnóstico
+
+📖 GUÍA COMPLETA:
+   Lee: SOLUCION_PROBLEMAS.md
+
+⚠️  NO ABRAS index.html directamente desde archivos
+    Esto causa errores de CORS
+
+✅ El juego tiene:
+   - 90 preguntas en 3 niveles
+   - Sistema de audio con TTS
+   - Guardado automático
+   - Diseño responsive
+   - Personaje Ty amigable
+
+¡Diviértete aprendiendo inglés! 🎮📚 

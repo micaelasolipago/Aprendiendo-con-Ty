@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug - Aprendiendo Inglés con Ty</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #f0f0f0;
+        }
+        .debug-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .test-result {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            border-left: 4px solid #ccc;
+        }
+        .success {
+            background: #d4edda;
+            border-color: #28a745;
+            color: #155724;
+        }
+        .error {
+            background: #f8d7da;
+            border-color: #dc3545;
+            color: #721c24;
+        }
+        .warning {
+            background: #fff3cd;
+            border-color: #ffc107;
+            color: #856404;
+        }
+        .info {
+            background: #d1ecf1;
+            border-color: #17a2b8;
+            color: #0c5460;
+        }
+        pre {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+            max-height: 300px;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="debug-container">
+        <h1>🔍 Diagnóstico del Juego Ty</h1>
+        <p>Esta página ayuda a identificar problemas específicos con el juego.</p>
+        
+        <div id="debug-results">
+            <div class="test-result info">
+                <strong>Iniciando diagnóstico...</strong>
+            </div>
+        </div>
+
+        <h3>Acciones:</h3>
+        <button onclick="runFullDiagnostic()">🔍 Diagnóstico Completo</button>
+        <button onclick="testHTMLStructure()">📄 Test HTML</button>
+        <button onclick="testCSSLoading()">🎨 Test CSS</button>
+        <button onclick="testJSLoading()">⚙️ Test JavaScript</button>
+        <button onclick="testApp()">🎮 Test App</button>
+        <button onclick="clearResults()">🧹 Limpiar</button>
+        <button onclick="window.location.href='index.html'">🎮 Ir al Juego</button>
+
+        <h3>Errores de Consola:</h3>
+        <div id="console-errors">
+            <pre id="error-log">No hay errores registrados aún.</pre>
+        </div>
+    </div>
+
+    <script>
+        let errorLog = [];
+
+        // Capturar errores
+        window.addEventListener('error', function(e) {
+            const errorMsg = `ERROR: ${e.message}\nArchivo: ${e.filename}\nLínea: ${e.lineno}\nColumna: ${e.colno}`;
+            errorLog.push(errorMsg);
+            updateErrorLog();
+            addResult(`❌ Error JavaScript: ${e.message}`, 'error');
+        });
+
+        function addResult(message, type = 'info') {
+            const div = document.createElement('div');
+            div.className = `test-result ${type}`;
+            div.innerHTML = message;
+            document.getElementById('debug-results').appendChild(div);
+        }
+
+        function clearResults() {
+            document.getElementById('debug-results').innerHTML = '';
+            errorLog = [];
+            updateErrorLog();
+        }
+
+        function updateErrorLog() {
+            const logElement = document.getElementById('error-log');
+            if (errorLog.length === 0) {
+                logElement.textContent = 'No hay errores registrados.';
+            } else {
+                logElement.textContent = errorLog.join('\n\n');
+            }
+        }
+
+        function testHTMLStructure() {
+            addResult('🔍 Probando estructura HTML...', 'info');
+            
+            // Test elementos principales
+            fetch('index.html')
+                .then(response => response.text())
+                .then(html => {
+                    if (html.includes('id="app"')) {
+                        addResult('✅ Elemento #app encontrado en HTML', 'success');
+                    } else {
+                        addResult('❌ Elemento #app NO encontrado en HTML', 'error');
+                    }
+                    
+                    if (html.includes('loading-screen')) {
+                        addResult('✅ loading-screen encontrado', 'success');
+                    } else {
+                        addResult('❌ loading-screen NO encontrado', 'error');
+                    }
+
+                    if (html.includes('main-menu')) {
+                        addResult('✅ main-menu encontrado', 'success');
+                    } else {
+                        addResult('❌ main-menu NO encontrado', 'error');
+                    }
+                })
+                .catch(e => addResult(`❌ Error cargando HTML: ${e.message}`, 'error'));
+        }
+
+        function testCSSLoading() {
+            addResult('🔍 Probando carga de CSS...', 'info');
+            
+            const cssFiles = [
+                'styles/main.css',
+                'styles/components.css',
+                'styles/responsive.css'
+            ];
+
+            cssFiles.forEach(file => {
+                fetch(file)
+                    .then(response => {
+                        if (response.ok) {
+                            addResult(`✅ ${file}: OK`, 'success');
+                        } else {
+                            addResult(`❌ ${file}: Error ${response.status}`, 'error');
+                        }
+                    })
+                    .catch(e => addResult(`❌ ${file}: ${e.message}`, 'error'));
+            });
+        }
+
+        function testJSLoading() {
+            addResult('🔍 Probando carga de JavaScript...', 'info');
+            
+            const jsFiles = [
+                'js/data/questions.js',
+                'js/utils/storage.js',
+                'js/utils/audio.js',
+                'js/game/gameLogic.js',
+                'js/game/questionRenderer.js',
+                'js/main.js'
+            ];
+
+            jsFiles.forEach(file => {
+                fetch(file)
+                    .then(response => {
+                        if (response.ok) {
+                            addResult(`✅ ${file}: Cargado`, 'success');
+                        } else {
+                            addResult(`❌ ${file}: Error ${response.status}`, 'error');
+                        }
+                    })
+                    .catch(e => addResult(`❌ ${file}: ${e.message}`, 'error'));
+            });
+        }
+
+        function testApp() {
+            addResult('🔍 Probando inicialización de App...', 'info');
+            
+            // Cargar scripts y probar
+            const script = document.createElement('script');
+            script.onload = function() {
+                setTimeout(() => {
+                    if (typeof GAME_DATA !== 'undefined') {
+                        addResult('✅ GAME_DATA está definido', 'success');
+                    } else {
+                        addResult('❌ GAME_DATA NO está definido', 'error');
+                    }
+
+                    if (typeof GameStorage !== 'undefined') {
+                        addResult('✅ GameStorage está definido', 'success');
+                    } else {
+                        addResult('❌ GameStorage NO está definido', 'error');
+                    }
+
+                    if (typeof App !== 'undefined') {
+                        addResult('✅ App está definido', 'success');
+                    } else {
+                        addResult('❌ App NO está definido', 'error');
+                    }
+                }, 1000);
+            };
+            script.onerror = function() {
+                addResult('❌ Error cargando scripts principales', 'error');
+            };
+            script.src = 'js/data/questions.js';
+            document.head.appendChild(script);
+        }
+
+        function runFullDiagnostic() {
+            clearResults();
+            addResult('🚀 Iniciando diagnóstico completo...', 'info');
+            
+            testHTMLStructure();
+            setTimeout(() => testCSSLoading(), 500);
+            setTimeout(() => testJSLoading(), 1000);
+            setTimeout(() => testApp(), 1500);
+        }
+
+        // Auto-ejecutar al cargar
+        window.onload = function() {
+            addResult('✅ Página de diagnóstico cargada correctamente', 'success');
+            addResult('💡 Haz clic en "Diagnóstico Completo" para empezar', 'info');
+        };
+    </script>
+</body>
+</html> 

@@ -1,0 +1,726 @@
+/* Variables CSS para colores y configuración */
+:root {
+    /* Colores principales */
+    --primary-blue: #4A90E2;
+    --primary-green: #7ED321;
+    --primary-orange: #F5A623;
+    --primary-purple: #9013FE;
+    --primary-red: #D0021B;
+    
+    /* Colores secundarios */
+    --light-blue: #E8F4FD;
+    --light-green: #F0FDE4;
+    --light-orange: #FEF9E7;
+    --light-purple: #F3E5F5;
+    --light-red: #FFEBEE;
+    
+    /* Colores neutros */
+    --white: #FFFFFF;
+    --light-gray: #F8F9FA;
+    --gray: #6C757D;
+    --dark-gray: #343A40;
+    --black: #1A1A1A;
+    
+    /* Gradientes */
+    --gradient-primary: radial-gradient(ellipse at top left, #667eea 0%, #764ba2 25%, #8360c3 50%, #2ebf91 75%, #667eea 100%);
+    --gradient-success: linear-gradient(135deg, var(--primary-green) 0%, #50C878 100%);
+    --gradient-warning: linear-gradient(135deg, var(--primary-orange) 0%, #FFB84D 100%);
+    
+    /* Sombras */
+    --shadow-small: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-medium: 0 4px 8px rgba(0, 0, 0, 0.15);
+    --shadow-large: 0 8px 16px rgba(0, 0, 0, 0.2);
+    
+    /* Transiciones */
+    --transition-fast: 0.2s ease;
+    --transition-medium: 0.3s ease;
+    --transition-slow: 0.5s ease;
+    
+    /* Tipografía */
+    --font-heading: 'Fredoka One', cursive;
+    --font-body: 'Nunito', sans-serif;
+    
+    /* Espaciado */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-xxl: 3rem;
+    
+    /* Border radius */
+    --radius-small: 8px;
+    --radius-medium: 12px;
+    --radius-large: 20px;
+    --radius-full: 50px;
+}
+
+/* Reset y configuración base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    background: 
+        linear-gradient(45deg, rgba(255, 255, 255, 0.1) 25%, transparent 25%),
+        linear-gradient(-45deg, rgba(255, 255, 255, 0.1) 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, rgba(255, 255, 255, 0.1) 75%),
+        linear-gradient(-45deg, transparent 75%, rgba(255, 255, 255, 0.1) 75%),
+        linear-gradient(135deg, #667eea 0%, #764ba2 25%, #a8e6cf 50%, #88d8c0 75%, #667eea 100%);
+    background-size: 30px 30px, 30px 30px, 30px 30px, 30px 30px, 100% 100%;
+    background-position: 0 0, 0 15px, 15px -15px, -15px 0px, 0 0;
+    min-height: 100vh;
+    color: var(--black);
+    overflow-x: hidden;
+    animation: backgroundShift 20s ease-in-out infinite;
+}
+
+/* Configuración de la aplicación */
+#app {
+    min-height: 100vh;
+    position: relative;
+}
+
+/* Sistema de pantallas */
+.screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all var(--transition-medium);
+}
+
+.screen.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* === HEADER DEL JUEGO UNIFICADO === */
+.game-header {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: var(--spacing-lg) var(--spacing-xl);
+    text-align: center;
+    border-bottom: 3px solid var(--primary-blue);
+    box-shadow: var(--shadow-medium);
+    width: 100%;
+    position: relative;
+}
+
+.game-title {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    color: var(--primary-blue);
+    margin-bottom: var(--spacing-md);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.ty-intro {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    flex-wrap: wrap;
+}
+
+.ty-character-main {
+    font-size: 3rem;
+    animation: bounce 2s ease-in-out infinite;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
+    flex-shrink: 0;
+}
+
+/* Estilos para el botón de cambio de tema */
+.theme-toggle {
+    background: rgba(74, 144, 226, 0.1);
+    border: 2px solid var(--primary-blue);
+    cursor: pointer;
+    transition: all var(--transition-medium);
+    border-radius: 50%;
+    padding: var(--spacing-sm);
+    position: relative;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+    background: rgba(74, 144, 226, 0.2);
+    filter: drop-shadow(4px 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+.theme-toggle:active {
+    transform: scale(0.95);
+}
+
+.ty-speech-bubble {
+    background: var(--white);
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--radius-large);
+    box-shadow: var(--shadow-medium);
+    position: relative;
+    font-weight: 600;
+    color: var(--dark-gray);
+    border: 2px solid var(--primary-blue);
+    flex: 1;
+    min-width: 200px;
+    max-width: 600px;
+}
+
+.ty-speech-bubble::before {
+    content: '';
+    position: absolute;
+    left: -15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 15px solid var(--primary-blue);
+}
+
+.ty-speech-bubble::after {
+    content: '';
+    position: absolute;
+    left: -12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-right: 12px solid var(--white);
+}
+
+/* === SELECCIÓN DE NIVELES === */
+.level-selection {
+    flex: 1;
+    padding: var(--spacing-xxl) var(--spacing-lg);
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: var(--spacing-xxl);
+}
+
+.section-header h2 {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    color: var(--white);
+    margin-bottom: var(--spacing-sm);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.section-subtitle {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.levels-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-xl);
+    margin-bottom: var(--spacing-xxl);
+}
+
+/* === TARJETAS DE NIVEL === */
+.level-card {
+    background: var(--white);
+    border-radius: var(--radius-large);
+    padding: var(--spacing-xl);
+    text-align: center;
+    box-shadow: var(--shadow-large);
+    transition: all var(--transition-medium);
+    border: 3px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.level-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-primary);
+}
+
+.level-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-large);
+    border-color: var(--primary-blue);
+}
+
+.level-card[data-level="1"]::before {
+    background: var(--gradient-success);
+}
+
+.level-card[data-level="2"]::before {
+    background: var(--gradient-warning);
+}
+
+.level-card[data-level="3"]::before {
+    background: var(--gradient-primary);
+}
+
+.level-icon {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-md);
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.level-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--dark-gray);
+    margin-bottom: var(--spacing-xs);
+}
+
+.level-card p {
+    color: var(--gray);
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
+}
+
+.level-description {
+    color: var(--gray);
+    font-style: italic;
+    margin-bottom: var(--spacing-lg);
+    line-height: 1.4;
+}
+
+/* === PROGRESO DEL NIVEL === */
+.progress-info {
+    margin-bottom: var(--spacing-lg);
+}
+
+.progress-text {
+    display: block;
+    font-weight: 600;
+    color: var(--dark-gray);
+    margin-bottom: var(--spacing-sm);
+}
+
+.progress-bar {
+    background: var(--light-gray);
+    height: 8px;
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--gradient-success);
+    border-radius: var(--radius-full);
+    transition: width var(--transition-medium);
+    position: relative;
+}
+
+.progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.3) 50%, 
+        transparent 100%);
+    animation: shimmer 2s infinite;
+}
+
+/* === BOTONES === */
+.level-button {
+    background: var(--gradient-primary);
+    color: var(--white);
+    border: none;
+    padding: var(--spacing-md) var(--spacing-xl);
+    border-radius: var(--radius-full);
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    box-shadow: var(--shadow-medium);
+    min-width: 120px;
+}
+
+.level-button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-large);
+    filter: brightness(1.1);
+}
+
+.level-button:active {
+    transform: translateY(0);
+}
+
+.level-button:disabled {
+    background: var(--gray);
+    cursor: not-allowed;
+    transform: none;
+    filter: none;
+}
+
+/* === CONTROLES DEL JUEGO === */
+.game-controls {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-xl);
+}
+
+.control-button {
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: var(--white);
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    font-weight: 600;
+    transition: all var(--transition-fast);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    backdrop-filter: blur(10px);
+}
+
+.control-button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+.reset-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.reset-icon .paw-print {
+    filter: brightness(0) invert(1);
+    animation: none;
+}
+
+/* === ANIMACIONES === */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes backgroundShift {
+    0%, 100% {
+        background-position: 0 0, 0 15px, 15px -15px, -15px 0px, 0 0;
+    }
+    25% {
+        background-position: 10px 5px, 5px 20px, 20px -10px, -10px 5px, 0 0;
+    }
+    50% {
+        background-position: 5px 10px, 10px 25px, 25px -5px, -5px 10px, 0 0;
+    }
+    75% {
+        background-position: -5px 5px, 5px 10px, 10px -20px, -20px 5px, 0 0;
+    }
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+    .game-title {
+        font-size: 2rem;
+    }
+    
+    .ty-intro {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .ty-character-main {
+        font-size: 2.5rem;
+    }
+    
+    .ty-speech-bubble::before,
+    .ty-speech-bubble::after {
+        display: none;
+    }
+    
+    .levels-container {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+    
+    .level-selection {
+        padding: var(--spacing-lg);
+    }
+    
+    .section-header h2 {
+        font-size: 1.75rem;
+    }
+    
+    .game-controls {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 480px) {
+    .game-header {
+        padding: var(--spacing-md);
+    }
+    
+    .game-title {
+        font-size: 1.75rem;
+    }
+    
+    .level-card {
+        padding: var(--spacing-lg);
+    }
+    
+    .level-icon {
+        font-size: 2.5rem;
+    }
+}
+
+/* === PANTALLA DE CARGA === */
+#loading-screen {
+    background: var(--gradient-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loading-content {
+    text-align: center;
+    color: var(--white);
+}
+
+.ty-loading {
+    margin-bottom: var(--spacing-xl);
+}
+
+.ty-character {
+    font-size: 4rem;
+    animation: bounce 1s infinite;
+    margin-bottom: var(--spacing-md);
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.loading-text {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-lg);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.loading-bar {
+    width: 250px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    margin: 0 auto;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.loading-progress {
+    height: 100%;
+    background: linear-gradient(90deg, var(--white) 0%, rgba(255, 255, 255, 0.8) 100%);
+    border-radius: var(--radius-full);
+    width: 0%;
+    transition: width var(--transition-medium);
+    position: relative;
+}
+
+.loading-progress::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.6) 50%, 
+        transparent 100%);
+    animation: shimmer 1.5s infinite;
+}
+
+/* === UTILIDADES === */
+.hidden {
+    display: none !important;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mb-lg {
+    margin-bottom: var(--spacing-lg);
+}
+
+.mt-lg {
+    margin-top: var(--spacing-lg);
+}
+
+/* === TEMA OSCURO UNIFICADO === */
+body.dark-theme {
+    background: 
+        linear-gradient(45deg, rgba(255, 255, 255, 0.05) 25%, transparent 25%),
+        linear-gradient(-45deg, rgba(255, 255, 255, 0.05) 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, rgba(255, 255, 255, 0.05) 75%),
+        linear-gradient(-45deg, transparent 75%, rgba(255, 255, 255, 0.05) 75%),
+        linear-gradient(135deg, #1a1a2e 0%, #16213e 25%, #0f3460 50%, #0e2238 75%, #1a1a2e 100%);
+    background-size: 30px 30px, 30px 30px, 30px 30px, 30px 30px, 100% 100%;
+    background-position: 0 0, 0 15px, 15px -15px, -15px 0px, 0 0;
+    color: var(--white);
+}
+
+body.dark-theme .game-header {
+    background: rgba(20, 20, 30, 0.95);
+    border-bottom: 3px solid rgba(100, 181, 246, 0.5);
+}
+
+body.dark-theme .game-title {
+    color: #64b5f6;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-theme .theme-toggle {
+    background: rgba(100, 181, 246, 0.1);
+    border: 2px solid #64b5f6;
+}
+
+body.dark-theme .theme-toggle:hover {
+    background: rgba(100, 181, 246, 0.2);
+}
+
+body.dark-theme .ty-speech-bubble {
+    background: rgba(30, 30, 40, 0.9);
+    color: var(--white);
+    border: 2px solid #64b5f6;
+}
+
+body.dark-theme .ty-speech-bubble::before {
+    border-right-color: #64b5f6;
+}
+
+body.dark-theme .ty-speech-bubble::after {
+    border-right-color: rgba(30, 30, 40, 0.9);
+}
+
+body.dark-theme .level-card {
+    background: rgba(30, 30, 40, 0.9);
+    border: 3px solid rgba(255, 255, 255, 0.1);
+}
+
+body.dark-theme .level-card:hover {
+    border-color: #64b5f6;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-theme .level-card h3 {
+    color: var(--white);
+}
+
+body.dark-theme .level-card p,
+body.dark-theme .level-description {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+body.dark-theme .progress-text {
+    color: var(--white);
+}
+
+body.dark-theme .progress-bar {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-theme .loading-content {
+    color: var(--white);
+}
+
+body.dark-theme .paw-print::before,
+body.dark-theme .paw-print::after {
+    background: var(--white);
+    box-shadow: 
+        -8px 2px 0 0 var(--white),    /* dedito izquierdo */
+        8px 2px 0 0 var(--white),     /* dedito derecho */
+        0 1px 2px rgba(255, 255, 255, 0.3),
+        -8px 3px 2px rgba(255, 255, 255, 0.3),
+        8px 3px 2px rgba(255, 255, 255, 0.3);
+}
+
+body.dark-theme .ty-character-main .paw-print::after {
+    box-shadow: 
+        -14px 3px 0 0 var(--white),
+        14px 3px 0 0 var(--white),
+        0 2px 4px rgba(255, 255, 255, 0.3),
+        -14px 5px 4px rgba(255, 255, 255, 0.3),
+        14px 5px 4px rgba(255, 255, 255, 0.3);
+}
+
+body.dark-theme .ty-character-game .paw-print::after {
+    box-shadow: 
+        -9px 2px 0 0 var(--white),
+        9px 2px 0 0 var(--white),
+        0 1px 3px rgba(255, 255, 255, 0.3),
+        -9px 3px 3px rgba(255, 255, 255, 0.3),
+        9px 3px 3px rgba(255, 255, 255, 0.3);
+}
+
+body.dark-theme .ty-character-big .paw-print::after {
+    box-shadow: 
+        -17px 4px 0 0 var(--white),
+        17px 4px 0 0 var(--white),
+        0 2px 5px rgba(255, 255, 255, 0.3),
+        -17px 6px 5px rgba(255, 255, 255, 0.3),
+        17px 6px 5px rgba(255, 255, 255, 0.3);
+} 

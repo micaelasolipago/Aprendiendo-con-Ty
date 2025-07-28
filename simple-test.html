@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Simple - Ty</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f0f0f0; }
+        .result { margin: 10px 0; padding: 10px; border-radius: 5px; }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Test Simple de JavaScript</h1>
+    <div id="results"></div>
+
+    <script>
+        function addResult(message, type = 'success') {
+            const div = document.createElement('div');
+            div.className = `result ${type}`;
+            div.textContent = message;
+            document.getElementById('results').appendChild(div);
+        }
+
+        // Test 1: JavaScript básico
+        addResult('✅ JavaScript básico funciona');
+
+        // Test 2: Cargar cada script individualmente
+        const scripts = [
+            'js/data/questions.js',
+            'js/utils/storage.js', 
+            'js/utils/audio.js',
+            'js/game/gameLogic.js',
+            'js/game/questionRenderer.js',
+            'js/main.js'
+        ];
+
+        let loadedScripts = 0;
+        let errors = [];
+
+        function loadScript(src) {
+            return new Promise((resolve, reject) => {
+                const script = document.createElement('script');
+                script.onload = () => {
+                    addResult(`✅ Cargado: ${src}`);
+                    resolve();
+                };
+                script.onerror = () => {
+                    addResult(`❌ Error cargando: ${src}`, 'error');
+                    reject(new Error(`Failed to load ${src}`));
+                };
+                script.src = src;
+                document.head.appendChild(script);
+            });
+        }
+
+        // Cargar scripts secuencialmente
+        async function loadAllScripts() {
+            for (const script of scripts) {
+                try {
+                    await loadScript(script);
+                    
+                    // Verificar qué objetos están definidos después de cada carga
+                    setTimeout(() => {
+                        if (script.includes('questions.js') && typeof GAME_DATA !== 'undefined') {
+                            addResult('✅ GAME_DATA definido');
+                        }
+                        if (script.includes('storage.js') && typeof GameStorage !== 'undefined') {
+                            addResult('✅ GameStorage definido');
+                        }
+                        if (script.includes('audio.js') && typeof AudioManager !== 'undefined') {
+                            addResult('✅ AudioManager definido');
+                        }
+                        if (script.includes('gameLogic.js') && typeof GameLogic !== 'undefined') {
+                            addResult('✅ GameLogic definido');
+                        }
+                        if (script.includes('questionRenderer.js') && typeof QuestionRenderer !== 'undefined') {
+                            addResult('✅ QuestionRenderer definido');
+                        }
+                        if (script.includes('main.js') && typeof App !== 'undefined') {
+                            addResult('✅ App definido');
+                        }
+                    }, 100);
+                } catch (error) {
+                    addResult(`❌ Error: ${error.message}`, 'error');
+                    errors.push(error.message);
+                }
+            }
+
+            // Resumen final
+            setTimeout(() => {
+                addResult(`📊 Errores encontrados: ${errors.length}`);
+                if (errors.length === 0) {
+                    addResult('🎉 ¡Todos los scripts se cargaron correctamente!');
+                } else {
+                    addResult(`❌ Errores: ${errors.join(', ')}`, 'error');
+                }
+            }, 500);
+        }
+
+        // Manejo de errores globales
+        window.addEventListener('error', function(e) {
+            addResult(`❌ Error global: ${e.message} en ${e.filename}:${e.lineno}`, 'error');
+        });
+
+        // Iniciar carga
+        loadAllScripts();
+    </script>
+</body>
+</html> 

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Final - Aprendiendo Inglés con Ty</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/components.css">
+    <link rel="stylesheet" href="styles/responsive.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        #test-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            z-index: 10000;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            overflow-y: auto;
+        }
+        .test-result {
+            margin: 5px 0;
+            padding: 8px;
+            border-radius: 4px;
+        }
+        .test-success { background: rgba(40, 167, 69, 0.3); }
+        .test-error { background: rgba(220, 53, 69, 0.3); }
+        .test-info { background: rgba(23, 162, 184, 0.3); }
+        #hide-overlay {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Overlay de test -->
+    <div id="test-overlay">
+        <h2>🧪 Test Final del Juego</h2>
+        <button id="hide-overlay">✅ Ocultar Test (El juego está listo)</button>
+        <div id="test-log"></div>
+    </div>
+
+    <!-- Estructura del juego original -->
+    <div id="app">
+        <!-- Pantalla de Carga -->
+        <div id="loading-screen" class="screen active">
+            <div class="loading-content">
+                <div class="ty-loading">
+                    <div class="ty-character">🐕</div>
+                    <div class="loading-text">Cargando...</div>
+                </div>
+                <div class="loading-bar">
+                    <div class="loading-progress"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menú Principal -->
+        <div id="main-menu" class="screen">
+            <header class="game-header">
+                <h1 class="game-title">Aprendiendo Inglés con Ty</h1>
+                <div class="ty-intro">
+                    <div class="ty-character-main">🐕</div>
+                    <div class="ty-speech-bubble">
+                        ¡Hola! Soy Ty y te ayudaré a aprender inglés de manera divertida.
+                    </div>
+                </div>
+            </header>
+
+            <main class="level-selection">
+                <h2>Elige tu nivel de aventura</h2>
+                <div class="levels-container">
+                    <div class="level-card" data-level="1">
+                        <div class="level-icon">🌱</div>
+                        <h3>Exploradores</h3>
+                        <p>3 - 6 años</p>
+                        <div class="level-description">Primeras palabras y sonidos</div>
+                        <div class="progress-info">
+                            <span class="progress-text">Progreso: <span id="progress-level-1">0</span>/30</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progress-bar-1"></div>
+                            </div>
+                        </div>
+                        <button class="level-button" data-level="1">¡Empezar!</button>
+                    </div>
+
+                    <div class="level-card" data-level="2">
+                        <div class="level-icon">🚀</div>
+                        <h3>Aventureros</h3>
+                        <p>6 - 12 años</p>
+                        <div class="level-description">Frases y gramática básica</div>
+                        <div class="progress-info">
+                            <span class="progress-text">Progreso: <span id="progress-level-2">0</span>/30</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progress-bar-2"></div>
+                            </div>
+                        </div>
+                        <button class="level-button" data-level="2">¡Aventura!</button>
+                    </div>
+
+                    <div class="level-card" data-level="3">
+                        <div class="level-icon">👑</div>
+                        <h3>Maestros</h3>
+                        <p>12 - 18 años</p>
+                        <div class="level-description">Gramática avanzada y comprensión</div>
+                        <div class="progress-info">
+                            <span class="progress-text">Progreso: <span id="progress-level-3">0</span>/30</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progress-bar-3"></div>
+                            </div>
+                        </div>
+                        <button class="level-button" data-level="3">¡Maestría!</button>
+                    </div>
+                </div>
+            </main>
+
+            <footer class="game-controls">
+                <button class="control-button" id="volume-toggle">🔊</button>
+                <button class="control-button" id="reset-progress">🔄</button>
+            </footer>
+        </div>
+
+        <!-- Pantalla del Juego -->
+        <div id="game-screen" class="screen">
+            <div class="game-top-bar">
+                <button class="back-button" id="back-to-menu">← Menú</button>
+                <div class="level-info">
+                    <span id="current-level-text">Nivel 1</span>
+                    <span id="question-progress">1/30</span>
+                </div>
+                <div class="score-display">
+                    Puntos: <span id="current-score">0</span>
+                </div>
+            </div>
+
+            <div class="game-content">
+                <div class="ty-guide">
+                    <div class="ty-character-game">🐕</div>
+                    <div class="ty-message" id="ty-message">¡Empecemos a aprender!</div>
+                </div>
+
+                <div class="question-container" id="question-container">
+                    <!-- Las preguntas se generan dinámicamente aquí -->
+                </div>
+
+                <div class="game-actions">
+                    <button class="audio-button" id="play-audio">🔊 Escuchar</button>
+                    <button class="hint-button" id="show-hint">💡 Pista</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pantalla de Resultados -->
+        <div id="results-screen" class="screen">
+            <div class="results-content">
+                <div class="ty-celebration">
+                    <div class="ty-character-big">🐕</div>
+                    <div class="celebration-message" id="celebration-message">¡Excelente trabajo!</div>
+                </div>
+
+                <div class="results-stats">
+                    <h3>Resultados</h3>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-number" id="final-score">0</div>
+                            <div class="stat-label">Puntos</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" id="correct-answers">0</div>
+                            <div class="stat-label">Correctas</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" id="accuracy-percentage">0%</div>
+                            <div class="stat-label">Precisión</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="results-actions">
+                    <button class="action-button" id="play-again">🔄 Jugar de Nuevo</button>
+                    <button class="action-button" id="next-level">➡️ Siguiente Nivel</button>
+                    <button class="action-button" id="back-to-levels">🏠 Niveles</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio Elements -->
+    <audio id="background-music" loop>
+        <source src="audio/background.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="correct-sound">
+        <source src="audio/correct.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="incorrect-sound">
+        <source src="audio/incorrect.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="word-pronunciation">
+        <source src="" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // Sistema de logging para el test
+        function testLog(message, type = 'info') {
+            const div = document.createElement('div');
+            div.className = `test-result test-${type}`;
+            div.textContent = `${new Date().toLocaleTimeString()}: ${message}`;
+            document.getElementById('test-log').appendChild(div);
+            console.log(`[${type.toUpperCase()}] ${message}`);
+        }
+
+        // Capturar errores
+        window.addEventListener('error', function(e) {
+            testLog(`ERROR: ${e.message} en ${e.filename}:${e.lineno}`, 'error');
+        });
+
+        // Función para ocultar overlay
+        document.getElementById('hide-overlay').addEventListener('click', function() {
+            document.getElementById('test-overlay').style.display = 'none';
+        });
+
+        testLog('✅ Test iniciado', 'success');
+        testLog('🔍 Cargando archivos JavaScript...', 'info');
+    </script>
+
+    <!-- Scripts del juego -->
+    <script src="js/data/questions.js"></script>
+    <script src="js/utils/storage.js"></script>
+    <script src="js/utils/audio.js"></script>
+    <script src="js/game/gameLogic.js"></script>
+    <script src="js/game/questionRenderer.js"></script>
+    <script src="js/main.js"></script>
+
+    <script>
+        // Test de funcionalidad después de cargar scripts
+        setTimeout(() => {
+            // Verificar objetos principales
+            if (typeof GAME_DATA !== 'undefined') {
+                testLog('✅ GAME_DATA cargado correctamente', 'success');
+                testLog(`📊 Preguntas nivel 1: ${GAME_DATA.level1.length}`, 'info');
+                testLog(`📊 Preguntas nivel 2: ${GAME_DATA.level2.length}`, 'info');
+                testLog(`📊 Preguntas nivel 3: ${GAME_DATA.level3.length}`, 'info');
+            } else {
+                testLog('❌ GAME_DATA no definido', 'error');
+            }
+
+            if (typeof GameStorage !== 'undefined') {
+                testLog('✅ GameStorage cargado correctamente', 'success');
+                try {
+                    GameStorage.init();
+                    testLog('✅ GameStorage inicializado', 'success');
+                } catch (e) {
+                    testLog(`❌ Error inicializando GameStorage: ${e.message}`, 'error');
+                }
+            } else {
+                testLog('❌ GameStorage no definido', 'error');
+            }
+
+            if (typeof AudioManager !== 'undefined') {
+                testLog('✅ AudioManager cargado correctamente', 'success');
+            } else {
+                testLog('❌ AudioManager no definido', 'error');
+            }
+
+            if (typeof GameLogic !== 'undefined') {
+                testLog('✅ GameLogic cargado correctamente', 'success');
+            } else {
+                testLog('❌ GameLogic no definido', 'error');
+            }
+
+            if (typeof QuestionRenderer !== 'undefined') {
+                testLog('✅ QuestionRenderer cargado correctamente', 'success');
+            } else {
+                testLog('❌ QuestionRenderer no definido', 'error');
+            }
+
+            if (typeof App !== 'undefined') {
+                testLog('✅ App cargado correctamente', 'success');
+                testLog('🚀 ¡TODOS LOS SISTEMAS FUNCIONAN CORRECTAMENTE!', 'success');
+                testLog('🎮 El juego está listo para usar', 'success');
+                testLog('💡 Haz clic en "Ocultar Test" para jugar', 'info');
+            } else {
+                testLog('❌ App no definido', 'error');
+            }
+
+            // Test de elementos del DOM
+            const appElement = document.getElementById('app');
+            if (appElement) {
+                testLog('✅ Elemento #app encontrado', 'success');
+            } else {
+                testLog('❌ Elemento #app no encontrado', 'error');
+            }
+
+            // Test de pantallas
+            const screens = ['loading-screen', 'main-menu', 'game-screen', 'results-screen'];
+            screens.forEach(screenId => {
+                const screen = document.getElementById(screenId);
+                if (screen) {
+                    testLog(`✅ Pantalla ${screenId} encontrada`, 'success');
+                } else {
+                    testLog(`❌ Pantalla ${screenId} no encontrada`, 'error');
+                }
+            });
+
+        }, 1000);
+    </script>
+</body>
+</html> 

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fix Missing Files - Ty</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f0f0f0; }
+        .result { margin: 10px 0; padding: 10px; border-radius: 5px; }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        .warning { background: #fff3cd; color: #856404; }
+        .info { background: #d1ecf1; color: #0c5460; }
+        button { background: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin: 5px; }
+        button:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+    <h1>🔧 Detectar y Corregir Archivos Faltantes</h1>
+    <div id="results"></div>
+    
+    <h3>Acciones:</h3>
+    <button onclick="checkAllFiles()">🔍 Verificar Todos los Archivos</button>
+    <button onclick="createMissingFiles()">🚀 Crear Archivos Faltantes</button>
+    <button onclick="window.location.href='simple-test.html'">🧪 Test Simple</button>
+    <button onclick="window.location.href='index.html'">🎮 Ir al Juego</button>
+
+    <script>
+        function addResult(message, type = 'info') {
+            const div = document.createElement('div');
+            div.className = `result ${type}`;
+            div.innerHTML = message;
+            document.getElementById('results').appendChild(div);
+        }
+
+        const requiredFiles = [
+            'js/data/questions.js',
+            'js/utils/storage.js',
+            'js/utils/audio.js',
+            'js/game/gameLogic.js',
+            'js/game/questionRenderer.js',
+            'js/main.js'
+        ];
+
+        async function checkAllFiles() {
+            addResult('🔍 Verificando archivos necesarios...', 'info');
+            
+            let missingFiles = [];
+            let existingFiles = [];
+
+            for (const file of requiredFiles) {
+                try {
+                    const response = await fetch(file);
+                    if (response.ok) {
+                        addResult(`✅ ${file}: Existe`, 'success');
+                        existingFiles.push(file);
+                    } else {
+                        addResult(`❌ ${file}: No encontrado (${response.status})`, 'error');
+                        missingFiles.push(file);
+                    }
+                } catch (error) {
+                    addResult(`❌ ${file}: Error - ${error.message}`, 'error');
+                    missingFiles.push(file);
+                }
+            }
+
+            addResult(`📊 Resumen: ${existingFiles.length} encontrados, ${missingFiles.length} faltantes`, 'info');
+            
+            if (missingFiles.length > 0) {
+                addResult(`⚠️ Archivos faltantes: ${missingFiles.join(', ')}`, 'warning');
+                addResult('💡 Haz clic en "Crear Archivos Faltantes" para solucionarlo', 'info');
+            } else {
+                addResult('🎉 ¡Todos los archivos están presentes!', 'success');
+                addResult('💡 El problema puede ser un error de sintaxis. Usa el Test Simple.', 'info');
+            }
+        }
+
+        function createMissingFiles() {
+            addResult('🚀 Iniciando creación de archivos faltantes...', 'info');
+            
+            // Como no podemos crear archivos directamente desde JavaScript del navegador,
+            // mostraremos las instrucciones para crearlos manualmente
+            
+            addResult('⚠️ No puedo crear archivos directamente desde el navegador', 'warning');
+            addResult('📝 Instrucciones para crear manualmente:', 'info');
+            
+            const instructions = `
+                <strong>1. Abre tu editor de código (VS Code, Notepad++, etc.)</strong><br>
+                <strong>2. Crea estos archivos si faltan:</strong><br><br>
+                
+                <strong>js/utils/audio.js</strong> - Sistema de audio<br>
+                <strong>js/game/gameLogic.js</strong> - Lógica del juego<br>
+                <strong>js/game/questionRenderer.js</strong> - Renderizado de preguntas<br><br>
+                
+                <strong>3. Alternativa rápida:</strong><br>
+                • Ve al terminal/CMD en la carpeta del juego<br>
+                • Ejecuta: <code>dir js\\* /s</code> para ver qué archivos existen<br>
+                • Compara con la lista de archivos necesarios
+            `;
+            
+            addResult(instructions, 'info');
+        }
+
+        // Auto-ejecutar al cargar
+        window.onload = function() {
+            addResult('🔧 Herramienta de corrección cargada', 'success');
+            addResult('💡 Haz clic en "Verificar Todos los Archivos" para empezar', 'info');
+        };
+
+        // Capturar errores
+        window.addEventListener('error', function(e) {
+            addResult(`❌ Error: ${e.message} en ${e.filename}:${e.lineno}`, 'error');
+        });
+    </script>
+</body>
+</html> 

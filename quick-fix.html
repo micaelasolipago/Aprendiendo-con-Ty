@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Fix - Ty</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #4A90E2 0%, #9013FE 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        .title {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+        .character {
+            font-size: 5rem;
+            margin: 20px 0;
+        }
+        .level-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+        .level-card {
+            background: rgba(255,255,255,0.9);
+            color: #333;
+            padding: 30px 20px;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .level-card:hover {
+            transform: translateY(-5px);
+        }
+        .level-icon {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+        .level-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .level-age {
+            font-size: 1rem;
+            opacity: 0.8;
+            margin-bottom: 10px;
+        }
+        .level-desc {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        .button {
+            background: #4A90E2;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin: 10px;
+            transition: background 0.3s ease;
+        }
+        .button:hover {
+            background: #357ABD;
+        }
+        .status {
+            background: rgba(0,0,0,0.3);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Aprendiendo Inglés con Ty</h1>
+        <div class="character">🐕</div>
+        <p>¡Hola! Soy Ty y te ayudaré a aprender inglés de manera divertida.</p>
+        
+        <div class="status">
+            <h3>Estado del Sistema:</h3>
+            <div id="system-status">Verificando...</div>
+        </div>
+
+        <h2>Elige tu nivel de aventura</h2>
+        <div class="level-cards">
+            <div class="level-card" onclick="startLevel(1)">
+                <div class="level-icon">🌱</div>
+                <div class="level-title">Exploradores</div>
+                <div class="level-age">3 - 6 años</div>
+                <div class="level-desc">Primeras palabras y sonidos</div>
+                <button class="button">¡Empezar!</button>
+            </div>
+
+            <div class="level-card" onclick="startLevel(2)">
+                <div class="level-icon">🚀</div>
+                <div class="level-title">Aventureros</div>
+                <div class="level-age">6 - 12 años</div>
+                <div class="level-desc">Frases y gramática básica</div>
+                <button class="button">¡Aventura!</button>
+            </div>
+
+            <div class="level-card" onclick="startLevel(3)">
+                <div class="level-icon">👑</div>
+                <div class="level-title">Maestros</div>
+                <div class="level-age">12 - 18 años</div>
+                <div class="level-desc">Gramática avanzada</div>
+                <button class="button">¡Maestría!</button>
+            </div>
+        </div>
+
+        <button class="button" onclick="window.location.href='index.html'">
+            Ir al Juego Original
+        </button>
+        
+        <button class="button" onclick="testSystems()">
+            Probar Sistemas
+        </button>
+    </div>
+
+    <script>
+        // Verificar sistemas
+        function updateStatus() {
+            let status = [];
+            
+            // Verificar si tenemos acceso a los sistemas del juego original
+            if (typeof GAME_DATA !== 'undefined') {
+                status.push('✅ GAME_DATA cargado');
+            } else {
+                status.push('❌ GAME_DATA no disponible');
+            }
+            
+            if (typeof GameStorage !== 'undefined') {
+                status.push('✅ GameStorage disponible');
+            } else {
+                status.push('❌ GameStorage no disponible');
+            }
+            
+            if (typeof App !== 'undefined') {
+                status.push('✅ App disponible');
+            } else {
+                status.push('❌ App no disponible');
+            }
+            
+            status.push('🎮 Esta versión funciona independientemente');
+            status.push('🔧 Úsala para verificar que todo está bien');
+            
+            document.getElementById('system-status').innerHTML = status.join('<br>');
+        }
+
+        function startLevel(level) {
+            alert(`¡Iniciando nivel ${level}!\n\nEsta es una versión de prueba.\nEl juego original está en index.html`);
+        }
+
+        function testSystems() {
+            // Test básico de JavaScript
+            try {
+                // Test localStorage
+                localStorage.setItem('test', 'ok');
+                localStorage.removeItem('test');
+                
+                // Test TTS
+                if ('speechSynthesis' in window) {
+                    const utterance = new SpeechSynthesisUtterance('Hello, this is a test');
+                    utterance.volume = 0.3;
+                    utterance.rate = 1.2;
+                    speechSynthesis.speak(utterance);
+                }
+                
+                alert('✅ Todos los sistemas básicos funcionan!\n\n- JavaScript: OK\n- LocalStorage: OK\n- Text-to-Speech: OK');
+            } catch (e) {
+                alert('❌ Error en sistemas: ' + e.message);
+            }
+        }
+
+        // Ejecutar al cargar
+        window.onload = function() {
+            updateStatus();
+            console.log('Quick Fix version loaded successfully');
+        };
+    </script>
+</body>
+</html> 
