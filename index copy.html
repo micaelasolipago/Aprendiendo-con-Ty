@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprendiendo Inglés con Ty</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/components.css">
+    <link rel="stylesheet" href="styles/responsive.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <!-- Pantalla de Carga -->
+        <div id="loading-screen" class="screen active">
+            <div class="loading-content">
+                <div class="ty-loading">
+                    <div class="ty-character">
+                        <div class="ty-character-paw">
+                            <div class="paw-print large animated"></div>
+                        </div>
+                    </div>
+                    <div class="loading-text">Cargando...</div>
+                </div>
+                <div class="loading-bar">
+                    <div class="loading-progress"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menú Principal -->
+        <div id="main-menu" class="screen">
+            <header class="game-header">
+                <h1 class="game-title">Aprendiendo Inglés con Ty</h1>
+                            <div class="ty-intro">
+                                        <button class="ty-character-main theme-toggle" id="theme-toggle" title="Cambiar a modo oscuro">
+                        <div class="ty-character-paw">
+                            <div class="paw-print large animated"></div>
+                        </div>
+                    </button>
+                    <div class="ty-speech-bubble">
+                        ¡Hola! Soy Ty y te ayudaré a aprender inglés de manera divertida.
+                    </div>
+                </div>
+            </header>
+
+            <main class="level-selection">
+                <div class="section-header">
+                    <h2>Elige tu nivel de aventura</h2>
+                    <p class="section-subtitle">Cada nivel está diseñado para tu edad y conocimientos</p>
+                </div>
+                <div class="levels-container">
+                    <div class="level-card" data-level="1">
+                        <div class="level-icon">🌱</div>
+                        <h3>Exploradores</h3>
+                        <p>3 - 6 años</p>
+                        <div class="level-description">Primeras palabras y sonidos</div>
+                        <div class="progress-info">
+                            <span class="progress-text">Progreso: <span id="progress-level-1">0</span>/30</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progress-fill-1"></div>
+                            </div>
+                        </div>
+                        <button class="level-button" data-target-level="1">¡Empezar!</button>
+                    </div>
+
+                    <div class="level-card" data-level="2">
+                        <div class="level-icon">🚀</div>
+                        <h3>Aventureros</h3>
+                        <p>6 - 12 años</p>
+                        <div class="level-description">Frases y gramática básica</div>
+                        <div class="progress-info">
+                            <span class="progress-text">Progreso: <span id="progress-level-2">0</span>/30</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progress-fill-2"></div>
+                            </div>
+                        </div>
+                        <button class="level-button" data-target-level="2">¡Empezar!</button>
+                    </div>
+
+                    <div class="level-card" data-level="3">
+                        <div class="level-icon">🏆</div>
+                        <h3>Maestros</h3>
+                        <p>12 - 18 años</p>
+                        <div class="level-description">Gramática avanzada y comprensión</div>
+                        <div class="progress-info">
+                            <span class="progress-text">Progreso: <span id="progress-level-3">0</span>/30</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progress-fill-3"></div>
+                            </div>
+                        </div>
+                        <button class="level-button" data-target-level="3">¡Empezar!</button>
+                    </div>
+                </div>
+
+                <div class="game-controls">
+                    <button id="progress-reset" class="control-button">
+                        <span class="reset-icon">
+                            <div class="paw-print small"></div>
+                        </span>
+                        <span class="control-text">Reiniciar</span>
+                    </button>
+                </div>
+            </main>
+        </div>
+
+        <!-- Pantalla del Juego -->
+        <div id="game-screen" class="screen">
+            <header class="game-top-bar">
+                <button id="back-to-menu" class="back-button">← Menú</button>
+                <div class="level-info">
+                    <span id="current-level-name">Nivel 1</span>
+                    <div class="question-progress">
+                        <span id="current-question">1</span> / <span id="total-questions">30</span>
+                    </div>
+                </div>
+                <div class="score-display">
+                    Puntos: <span id="current-score">0</span>
+                </div>
+            </header>
+
+            <main class="game-content">
+                <div class="ty-guide">
+                    <div class="ty-character-game">
+                        <div class="ty-character-paw">
+                            <div class="paw-print animated"></div>
+                        </div>
+                    </div>
+                    <div id="ty-message" class="ty-message">¡Muy bien! Sigamos aprendiendo.</div>
+                </div>
+
+                <div class="question-container">
+                    <div id="question-content">
+                        <!-- El contenido de la pregunta se generará dinámicamente -->
+                    </div>
+                </div>
+
+                <div class="game-actions">
+                    <button id="hint-button" class="hint-button">
+                        <span class="hint-icon">💡</span>
+                        Pista
+                    </button>
+                </div>
+            </main>
+        </div>
+
+        <!-- Pantalla de Resultados -->
+        <div id="results-screen" class="screen">
+            <div class="results-content">
+                <div class="ty-celebration">
+                    <div class="ty-character-big">
+                        <div class="ty-character-paw">
+                            <div class="paw-print large animated"></div>
+                        </div>
+                    </div>
+                    <div class="celebration-message" id="celebration-message">
+                        ¡Excelente trabajo!
+                    </div>
+                </div>
+
+                <div class="results-stats">
+                    <h2>Resultados</h2>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-number" id="correct-answers">0</div>
+                            <div class="stat-label">Respuestas Correctas</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" id="total-score">0</div>
+                            <div class="stat-label">Puntos Totales</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" id="accuracy-percentage">0%</div>
+                            <div class="stat-label">Precisión</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="results-actions">
+                    <button id="play-again" class="action-button primary">Jugar de Nuevo</button>
+                    <button id="next-level" class="action-button secondary">Siguiente Nivel</button>
+                    <button id="back-to-levels" class="action-button">Elegir Nivel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="js/data/questions.js"></script>
+    <script src="js/utils/storage.js"></script>
+    <script src="js/game/gameLogic.js"></script>
+    <script src="js/game/questionRenderer.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html> 
