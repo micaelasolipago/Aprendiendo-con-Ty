@@ -1,219 +1,278 @@
 # 🐶 Aprendiendo con Ty: Aventura Bilingüe
 
-Una aplicación educativa interactiva diseñada para que niños de habla hispana aprendan inglés de forma lúdica y divertida. El juego se centra en una experiencia de usuario única con el personaje guía Ty, un rottweiler negro amigable.
+## 📖 Descripción
 
-## ✨ Características Principales
+**Aprendiendo con Ty: Aventura Bilingüe** es un juego educativo interactivo diseñado para niños de habla hispana que quieren aprender inglés de forma divertida y efectiva. El juego presenta a Ty, un amigable rottweiler negro que guía a los jugadores a través de tres niveles de aprendizaje progresivo.
 
-### 🎯 Tres Niveles de Aprendizaje por Edad
+## 🎮 Características Principales
 
-#### **Nivel 1: Exploradores de Sonidos (3-6 años)**
-- **Metodología**: Totalmente auditiva y visual
-- **Contenido**: Vocabulario básico (animales, colores, formas, objetos del hogar)
-- **Interacción**: El niño debe tocar el objeto correspondiente en pantalla
-- **Pistas**: Animaciones de Ty señalando la imagen correcta
+### 🌟 **Sistema de Niveles por Edad**
+- **Nivel 1 (3-6 años) - Exploradores de Sonidos**: Aprendizaje auditivo y visual
+- **Nivel 2 (6-12 años) - Constructores de Palabras**: Formación de palabras y frases
+- **Nivel 3 (12-18 años) - Creadores de Historias**: Comprensión lectora y gramática avanzada
 
-#### **Nivel 2: Constructores de Palabras (6-12 años)**
-- **Metodología**: Introduce lectura y escritura
-- **Contenido**: Vocabulario amplio, frases comunes, verbos básicos
-- **Interacción**: Juegos de arrastrar y soltar letras, selección de palabras
-- **Pistas**: Audio que pronuncia palabra letra por letra
+### 🎯 **Funcionalidades Únicas**
+- **Botón de Huella 3D**: Toggle de modo oscuro/claro con animación única
+- **Text-to-Speech**: Pronunciación automática en inglés para todas las preguntas
+- **Sistema de Audio Completo**: Efectos de sonido y música generados programáticamente
+- **Diseño Responsivo**: Optimizado para móviles, tablets y desktop
+- **90 Preguntas**: 30 preguntas por nivel con opciones mezcladas aleatoriamente
 
-#### **Nivel 3: Creadores de Historias (12-18 años)**
-- **Metodología**: Creación de historias interactivas
-- **Contenido**: Estructuras gramaticales avanzadas, lectura de textos
-- **Interacción**: Construcción de oraciones complejas
-- **Pistas**: Traducciones y explicaciones gramaticales
-
-### 🌙 Botón de Huella 3D - Modo Oscuro
-- **Diseño único**: Botón flotante con forma de huella de perro en 3D
-- **Animación**: Efecto de pulsación al cambiar tema
-- **Transición suave**: Cambio completo de paleta de colores
-- **Personalización**: Experiencia visual adaptada a preferencias
-
-### 🎨 Diseño Visual Impactante
-- **Paleta de colores vibrante**: Modo claro con colores saturados
-- **Modo oscuro relajante**: Tonos suaves para visión nocturna
-- **Animaciones fluidas**: Efectos de partículas y transiciones
-- **Responsive design**: Adaptado a todas las resoluciones
-
-### 🎵 Sistema de Audio Completo
-- **Voz en off**: Grabaciones por hablantes nativos
-- **Efectos de sonido**: Biblioteca específica para cada acción
-- **Control de volumen**: Ajustes independientes para música y efectos
-
-### 📱 Experiencia Móvil Optimizada
-- **Touch-friendly**: Botones con altura mínima de 44px
-- **Orientación landscape**: Adaptación automática
-- **Accesibilidad**: Soporte para navegación por teclado
-- **Reduced motion**: Respeto a preferencias de accesibilidad
+### 🎨 **Experiencia Visual**
+- **Temas Dinámicos**: Modo claro y oscuro con transiciones suaves
+- **Animaciones Fluidas**: Partículas, confeti y efectos visuales
+- **Personaje Ty**: Rottweiler negro con animaciones de emoción
+- **Huellas Decorativas**: Elementos visuales temáticos en toda la interfaz
 
 ## 🚀 Instalación y Uso
 
-### Requisitos
+### 📋 Requisitos
 - Navegador web moderno (Chrome, Firefox, Safari, Edge)
 - Conexión a internet (para fuentes y recursos externos)
+- Altavoces o auriculares (para audio)
 
-### Instalación Local
-1. **Clonar o descargar** el proyecto
-2. **Abrir** `index.html` en tu navegador
-3. **¡Listo!** El juego se ejecutará automáticamente
+### ⚡ Instalación Rápida
+1. **Clona el repositorio:**
+   ```bash
+   git clone https://github.com/DeevTy/Juego-devty.git
+   cd Juego-devty
+   ```
 
-### Estructura de Archivos
+2. **Abre el juego:**
+   - Abre `index.html` en tu navegador
+   - O usa un servidor local: `python -m http.server 8000`
+
+3. **¡Juega!**
+   - Selecciona tu edad
+   - Elige un nivel
+   - Responde las preguntas en español → inglés
+
+## 🎯 Cómo Jugar
+
+### 📱 **Navegación**
+- **Inicio**: Pantalla principal con selección de edad
+- **Niveles**: Vista de los tres niveles disponibles
+- **Progreso**: Estadísticas de tu aprendizaje
+- **Configuración**: Ajustes de audio y animaciones
+
+### 🎮 **Mecánicas del Juego**
+1. **Selecciona tu edad** (3-6, 6-12, o 12-18 años)
+2. **Elige un nivel** de aprendizaje
+3. **Escucha la pregunta** haciendo clic en "🔊 Reproducir"
+4. **Selecciona la respuesta correcta** en inglés
+5. **Recibe feedback inmediato** con animaciones y sonidos
+6. **Continúa** hasta completar el nivel
+
+### 🏆 **Sistema de Puntuación**
+- **Respuesta correcta**: +10 puntos + racha
+- **Respuesta incorrecta**: 0 puntos, racha se reinicia
+- **Racha**: Bonificación por respuestas consecutivas correctas
+
+## 🛠️ Tecnologías Utilizadas
+
+### 💻 **Frontend**
+- **HTML5**: Estructura semántica y accesible
+- **CSS3**: Variables CSS, Grid, Flexbox, animaciones avanzadas
+- **JavaScript ES6+**: Clases, módulos, async/await
+- **Web Audio API**: Generación programática de sonidos
+- **Web Speech API**: Text-to-Speech para pronunciación
+
+### 🎨 **Diseño**
+- **Responsive Design**: Mobile-first con breakpoints completos
+- **CSS Variables**: Sistema de temas dinámico
+- **Glassmorphism**: Efectos de transparencia y blur
+- **Animaciones CSS**: Keyframes y transiciones suaves
+
+### 🔧 **Arquitectura**
+- **Modular**: Separación clara de responsabilidades
+- **Orientado a Objetos**: Clases bien estructuradas
+- **Event-Driven**: Sistema de eventos optimizado
+- **LocalStorage**: Persistencia de progreso local
+
+## 📁 Estructura del Proyecto
+
 ```
 juego/
 ├── index.html              # Página principal
+├── README.md              # Documentación
 ├── styles/
-│   ├── main.css           # Estilos base y variables CSS
-│   ├── components.css     # Componentes específicos
-│   └── animations.css     # Animaciones y efectos
+│   ├── main.css           # Variables y estilos base
+│   ├── components.css     # Componentes UI
+│   └── animations.css     # Animaciones CSS
 ├── js/
 │   ├── app.js            # Aplicación principal
-│   ├── animations.js     # Sistema de animaciones
-│   └── game.js           # Lógica del juego
-├── assets/
-│   ├── images/           # Imágenes del juego
-│   └── sounds/           # Archivos de audio
-└── README.md             # Documentación
+│   ├── game.js           # Lógica del juego
+│   ├── audio.js          # Sistema de audio
+│   └── animations.js     # Animaciones avanzadas
+└── assets/
+    ├── sounds/           # Efectos de sonido
+    └── images/           # Imágenes del juego
 ```
 
-## 🎮 Cómo Jugar
+## 🎵 Sistema de Audio
 
-### 1. Selección de Edad
-- Elige tu rango de edad en la pantalla de inicio
-- Cada edad desbloquea contenido apropiado
-- La selección se guarda automáticamente
+### 🔊 **Características**
+- **Text-to-Speech**: Pronunciación automática en inglés
+- **Efectos de Sonido**: Generados programáticamente
+- **Música de Fondo**: Diferentes temas por nivel
+- **Control de Volumen**: Independiente para música y efectos
+- **Modo Silencioso**: Toggle completo de audio
 
-### 2. Navegación
-- **Inicio**: Pantalla principal con Ty
-- **Niveles**: Selección de niveles de aprendizaje
-- **Progreso**: Estadísticas y logros
-- **Configuración**: Ajustes de audio y animaciones
+### 🎼 **Tipos de Audio**
+- **Sonidos de UI**: Clicks, hovers, transiciones
+- **Feedback de Juego**: Correcto, incorrecto, éxito
+- **Sonidos de Ty**: Ladridos, felicidad, ánimo
+- **Música Ambiental**: Temas relajantes y motivadores
 
-### 3. Durante el Juego
-- **Preguntas**: Responde según tu nivel
-- **Audio**: Reproduce sonidos y pronunciaciones
-- **Pistas**: Obtén ayuda cuando la necesites
-- **Progreso**: Ve tu avance en tiempo real
+## 🎨 Sistema de Temas
 
-### 4. Controles
-- **Mouse/Touch**: Navegación principal
-- **Teclado**: 
-  - `1-4`: Seleccionar opciones
-  - `Enter`: Confirmar/continuar
-  - `Escape`: Volver al menú
+### 🌞 **Modo Claro**
+- Colores vibrantes y saturados
+- Fondos luminosos
+- Contraste alto para legibilidad
 
-## 🎨 Personalización
+### 🌙 **Modo Oscuro**
+- Tonos suaves y relajantes
+- Fondos oscuros
+- Colores adaptados para visión nocturna
 
-### Modo Oscuro/Claro
-- **Botón de huella**: Esquina superior derecha
-- **Transición animada**: Efecto de partículas
-- **Preferencia guardada**: Se recuerda tu elección
+### 🔄 **Transiciones**
+- Cambio suave entre temas
+- Animaciones de partículas
+- Efectos visuales únicos
 
-### Configuración de Audio
-- **Volumen de música**: Control independiente
-- **Volumen de efectos**: Ajuste de sonidos
-- **Velocidad de animaciones**: Personalización de ritmo
+## 📱 Diseño Responsivo
 
-## 🔧 Características Técnicas
+### 📱 **Móviles (320px - 480px)**
+- Botones de 44px mínimo para touch
+- Navegación optimizada
+- Texto escalado apropiadamente
 
-### Tecnologías Utilizadas
-- **HTML5**: Estructura semántica
-- **CSS3**: Variables CSS, Grid, Flexbox, Animaciones
-- **JavaScript ES6+**: Clases, módulos, async/await
-- **LocalStorage**: Persistencia de datos
-- **Web APIs**: Intersection Observer, Audio API
+### 📱 **Móviles Grandes (481px - 767px)**
+- Layout adaptado
+- Elementos redimensionados
+- Mejor aprovechamiento del espacio
 
-### Arquitectura del Código
-- **Modular**: Separación clara de responsabilidades
-- **Orientado a objetos**: Clases bien estructuradas
-- **Event-driven**: Sistema de eventos robusto
-- **Responsive**: Diseño adaptativo completo
+### 📱 **Tablets (768px - 1023px)**
+- Grid de 2 columnas
+- Elementos más grandes
+- Navegación mejorada
 
-### Optimizaciones
-- **Performance**: Animaciones optimizadas con requestAnimationFrame
-- **Accesibilidad**: ARIA labels, navegación por teclado
-- **SEO**: Meta tags y estructura semántica
-- **Mobile-first**: Diseño optimizado para móviles
+### 💻 **Desktop (1024px+)**
+- Layout completo
+- Elementos de tamaño normal
+- Navegación completa
 
-## 🎯 Sistema de Progresión
+## ♿ Accesibilidad
 
-### Puntuación
-- **Puntos base**: 10 por respuesta correcta
-- **Bonus por racha**: +5 puntos después de 3 aciertos seguidos
-- **Progreso persistente**: Se guarda automáticamente
+### 🎯 **Características**
+- **Navegación por Teclado**: Soporte completo
+- **Focus Visible**: Indicadores claros
+- **Contraste Adecuado**: En ambos temas
+- **Reduced Motion**: Respeto por preferencias del usuario
+- **Semántica HTML**: Estructura accesible
 
-### Logros
-- **Niveles completados**: Desbloqueo progresivo
-- **Puntuaciones altas**: Reconocimiento de excelencia
-- **Rachas**: Celebración de consistencia
+### 🔧 **Compatibilidad**
+- **Navegadores Modernos**: Chrome, Firefox, Safari, Edge
+- **Dispositivos Móviles**: iOS, Android
+- **Screen Readers**: Compatible con lectores de pantalla
 
-### Estadísticas
-- **Puntos totales**: Acumulado de todas las sesiones
-- **Nivel actual**: Progreso en el juego
-- **Logros desbloqueados**: Trayectoria de aprendizaje
+## 🚀 Despliegue
 
-## 🌟 Características Únicas
+### 🌐 **GitHub Pages**
+1. Sube el código a GitHub
+2. Ve a Settings > Pages
+3. Selecciona la rama main
+4. El juego estará disponible en `https://username.github.io/repository-name`
 
-### Personaje Ty
-- **Rottweiler negro**: Diseño distintivo y amigable
-- **Animaciones expresivas**: Reacciona a las acciones del usuario
-- **Guía constante**: Acompaña en todo el aprendizaje
+### 📦 **Servidor Local**
+```bash
+# Python 3
+python -m http.server 8000
 
-### Huellas Decorativas
-- **Elementos visuales**: Huellas de perro realistas
-- **Animaciones suaves**: Movimiento natural
-- **Ambiente inmersivo**: Crean atmósfera lúdica
+# Node.js
+npx serve .
 
-### Efectos Especiales
-- **Partículas**: Sistema dinámico de efectos visuales
-- **Confeti**: Celebración de logros
-- **Transiciones**: Cambios suaves entre pantallas
+# PHP
+php -S localhost:8000
+```
 
-## 🔮 Futuras Mejoras
+## 🔧 Personalización
 
-### Contenido Adicional
-- **Más niveles**: Expansión de contenido educativo
-- **Nuevas categorías**: Vocabulario especializado
-- **Historias interactivas**: Narrativas personalizadas
+### 🎨 **Cambiar Colores**
+Edita las variables CSS en `styles/main.css`:
+```css
+:root {
+    --primary-blue: #2563eb;
+    --accent-yellow: #fbbf24;
+    /* ... más variables */
+}
+```
 
-### Funcionalidades Avanzadas
-- **Multiplayer**: Aprendizaje colaborativo
-- **Perfiles**: Múltiples usuarios
-- **Sincronización**: Progreso en la nube
+### 🎵 **Agregar Preguntas**
+Edita el array de preguntas en `js/game.js`:
+```javascript
+questions: [
+    {
+        type: "translation",
+        question: "¿Cómo se dice 'palabra' en inglés?",
+        options: ["Word", "Book", "Letter", "Text"],
+        correct: 0,
+        spanish: "palabra",
+        english: "word"
+    }
+]
+```
 
-### Integración
-- **API de audio**: Text-to-speech avanzado
-- **Analytics**: Seguimiento de progreso detallado
-- **Gamificación**: Sistema de recompensas expandido
+### 🎭 **Cambiar Personaje**
+Modifica el emoji y estilos en los archivos CSS:
+```css
+.ty-character {
+    font-size: 3rem;
+    filter: brightness(0.7) contrast(1.2);
+}
+```
 
-## 🤝 Contribución
+## 🤝 Contribuciones
 
-### Desarrollo
-1. **Fork** el proyecto
-2. **Crea** una rama para tu feature
-3. **Commit** tus cambios
-4. **Push** a la rama
-5. **Abre** un Pull Request
+### 📝 **Cómo Contribuir**
+1. Haz un fork del proyecto
+2. Crea una rama para tu feature (`git checkout -b feature/nueva-funcionalidad`)
+3. Commit tus cambios (`git commit -am 'Agregar nueva funcionalidad'`)
+4. Push a la rama (`git push origin feature/nueva-funcionalidad`)
+5. Crea un Pull Request
 
-### Reporte de Bugs
-- Usa el sistema de issues
-- Incluye pasos para reproducir
-- Especifica navegador y sistema operativo
+### 🐛 **Reportar Bugs**
+- Usa el sistema de Issues de GitHub
+- Incluye pasos para reproducir el problema
+- Especifica tu navegador y sistema operativo
 
 ## 📄 Licencia
 
 Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles.
 
+## 👨‍💻 Autor
+
+**DeevTy** - Desarrollado con ❤️ para el aprendizaje bilingüe
+
 ## 🙏 Agradecimientos
 
-- **Ty**: Nuestro querido rottweiler negro que inspira el aprendizaje
-- **Comunidad educativa**: Por el feedback y sugerencias
-- **Desarrolladores**: Por las tecnologías web que hacen esto posible
+- **Ty**: Nuestro amigable rottweiler que inspira el aprendizaje
+- **Comunidad**: Todos los que contribuyen al proyecto
+- **Educadores**: Por su valiosa retroalimentación
 
 ---
 
-**¡Disfruta aprendiendo inglés con Ty! 🐶📚**
+## 🎯 **Próximas Características**
 
-*Desarrollado con ❤️ para el aprendizaje bilingüe*
+- [ ] **Modo Multijugador**: Competencia entre amigos
+- [ ] **Más Idiomas**: Soporte para otros idiomas
+- [ ] **Modo Offline**: Juego sin conexión
+- [ ] **Logros**: Sistema de badges y recompensas
+- [ ] **Progreso en la Nube**: Sincronización entre dispositivos
+
+---
+
+**¡Disfruta aprendiendo inglés con Ty! 🐶✨**
 
 
