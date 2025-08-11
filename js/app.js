@@ -1,7 +1,17 @@
 // ===== APLICACIÓN PRINCIPAL =====
 class TyGameApp {
     constructor() {
-        this.currentTheme = localStorage.getItem('theme') || 'light';
+        // Forzar tema claro por defecto, especialmente en móviles
+        const savedTheme = localStorage.getItem('theme');
+        const isMobile = window.innerWidth <= 768;
+        
+        // En móviles, siempre iniciar en modo claro a menos que el usuario haya elegido explícitamente oscuro
+        if (isMobile && !savedTheme) {
+            this.currentTheme = 'light';
+        } else {
+            this.currentTheme = savedTheme || 'light';
+        }
+        
         this.currentSection = 'home';
         this.isTransitioning = false;
         
@@ -23,6 +33,16 @@ class TyGameApp {
     
     // ===== CONFIGURACIÓN DEL TEMA =====
     setupTheme() {
+        // Verificar si es móvil y forzar tema claro si es necesario
+        const isMobile = window.innerWidth <= 768;
+        const savedTheme = localStorage.getItem('theme');
+        
+        // En móviles, si no hay tema guardado, forzar modo claro
+        if (isMobile && !savedTheme) {
+            this.currentTheme = 'light';
+            localStorage.setItem('theme', 'light');
+        }
+        
         document.documentElement.setAttribute('data-theme', this.currentTheme);
         this.updateThemeIcon();
     }
@@ -507,6 +527,20 @@ class TyGameApp {
                 element.style.outline = '';
                 element.style.outlineOffset = '';
             });
+        });
+        
+        // Listener para cambios de orientación en móviles
+        window.addEventListener('resize', () => {
+            const isMobile = window.innerWidth <= 768;
+            const savedTheme = localStorage.getItem('theme');
+            
+            // Si cambia a móvil y no hay tema guardado, forzar modo claro
+            if (isMobile && !savedTheme) {
+                this.currentTheme = 'light';
+                localStorage.setItem('theme', 'light');
+                document.documentElement.setAttribute('data-theme', 'light');
+                this.updateThemeIcon();
+            }
         });
     }
     
