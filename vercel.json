@@ -1,3 +1,18 @@
 {
-  "version": 2
+  "version": 2,
+  "functions": {},
+  "routes": [
+    {
+      "src": "/js/(.*)",
+      "headers": {
+        "Content-Type": "application/javascript"
+      }
+    },
+    {
+      "src": "/styles/(.*)",
+      "headers": {
+        "Content-Type": "text/css"
+      }
+    }
+  ]
 }
