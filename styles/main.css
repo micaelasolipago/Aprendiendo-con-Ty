@@ -1,0 +1,499 @@
+/* ===== VARIABLES CSS ===== */
+:root {
+    /* Colores principales - Modo Claro */
+    --primary-blue: #2563eb;
+    --primary-blue-hover: #1d4ed8;
+    --secondary-blue: #3b82f6;
+    --accent-yellow: #fbbf24;
+    --accent-orange: #f97316;
+    --accent-green: #10b981;
+    --accent-purple: #8b5cf6;
+    
+    /* Colores de fondo - Modo Claro */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8fafc;
+    --bg-tertiary: #f1f5f9;
+    --bg-card: rgba(255, 255, 255, 0.95);
+    
+    /* Colores de texto - Modo Claro */
+    --text-primary: #1e293b;
+    --text-secondary: #475569;
+    --text-muted: #64748b;
+    --text-light: #94a3b8;
+    
+    /* Colores de bordes - Modo Claro */
+    --border-light: #e2e8f0;
+    --border-medium: #cbd5e1;
+    --border-dark: #94a3b8;
+    
+    /* Sombras - Modo Claro */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    
+    /* Efectos de blur */
+    --blur-light: blur(10px);
+    --blur-medium: blur(15px);
+    
+    /* Transiciones */
+    --transition-fast: 0.15s ease-in-out;
+    --transition-normal: 0.3s ease-in-out;
+    --transition-slow: 0.5s ease-in-out;
+}
+
+/* ===== MODO OSCURO ===== */
+[data-theme="dark"] {
+    /* Colores principales - Modo Oscuro */
+    --primary-blue: #3b82f6;
+    --primary-blue-hover: #60a5fa;
+    --secondary-blue: #60a5fa;
+    --accent-yellow: #fbbf24;
+    --accent-orange: #fb923c;
+    --accent-green: #34d399;
+    --accent-purple: #a78bfa;
+    
+    /* Colores de fondo - Modo Oscuro */
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --bg-tertiary: #334155;
+    --bg-card: rgba(30, 41, 59, 0.95);
+    
+    /* Colores de texto - Modo Oscuro */
+    --text-primary: #f8fafc;
+    --text-secondary: #e2e8f0;
+    --text-muted: #cbd5e1;
+    --text-light: #94a3b8;
+    
+    /* Colores de bordes - Modo Oscuro */
+    --border-light: #475569;
+    --border-medium: #64748b;
+    --border-dark: #94a3b8;
+    
+    /* Sombras - Modo Oscuro */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+}
+
+/* ===== RESET Y ESTILOS BASE ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Fredoka', sans-serif;
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+    transition: background var(--transition-normal), color var(--transition-normal);
+    overflow-x: hidden;
+}
+
+/* ===== TIPOGRAFÍA ===== */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+h3 {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+p {
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+}
+
+/* ===== BOTONES ===== */
+button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    transition: all var(--transition-fast);
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-weight: 500;
+    border-radius: 12px;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* ===== ENLACES ===== */
+a {
+    color: var(--primary-blue);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+a:hover {
+    color: var(--primary-blue-hover);
+}
+
+/* ===== INPUTS ===== */
+input, textarea, select {
+    font-family: inherit;
+    border: 2px solid var(--border-light);
+    border-radius: 8px;
+    padding: 0.75rem;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    transition: all var(--transition-fast);
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* ===== UTILIDADES ===== */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.visible {
+    display: block !important;
+}
+
+/* ===== ANIMACIONES BASE ===== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 53%, 80%, 100% {
+        transform: translate3d(0, 0, 0);
+    }
+    40%, 43% {
+        transform: translate3d(0, -30px, 0);
+    }
+    70% {
+        transform: translate3d(0, -15px, 0);
+    }
+    90% {
+        transform: translate3d(0, -4px, 0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* ===== CLASES DE ANIMACIÓN ===== */
+.fade-in {
+    animation: fadeIn 0.6s ease-out;
+}
+
+.slide-in {
+    animation: slideIn 0.5s ease-out;
+}
+
+.bounce {
+    animation: bounce 1s ease-in-out;
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* ===== MÓVILES PEQUEÑOS (hasta 480px) ===== */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.6rem;
+        line-height: 1.2;
+        margin-bottom: 0.5rem;
+    }
+    
+    h2 {
+        font-size: 1.3rem;
+        line-height: 1.3;
+        margin-bottom: 0.5rem;
+    }
+    
+    h3 {
+        font-size: 1.1rem;
+        line-height: 1.4;
+        margin-bottom: 0.5rem;
+    }
+    
+    p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+    
+    button {
+        padding: 0.75rem 1.25rem;
+        font-size: 0.95rem;
+        min-height: 44px;
+        border-radius: 12px;
+    }
+    
+    .container {
+        padding: 0.75rem;
+        margin: 0;
+    }
+    
+    /* Mejorar scroll en móviles */
+    body {
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Ajustar viewport para móviles */
+    html {
+        font-size: 14px;
+    }
+}
+
+/* ===== MÓVILES GRANDES (481px - 767px) ===== */
+@media (min-width: 481px) and (max-width: 767px) {
+    h1 {
+        font-size: 1.9rem;
+        line-height: 1.2;
+    }
+    
+    h2 {
+        font-size: 1.6rem;
+        line-height: 1.3;
+    }
+    
+    h3 {
+        font-size: 1.3rem;
+        line-height: 1.4;
+    }
+    
+    button {
+        padding: 0.875rem 1.5rem;
+        font-size: 1rem;
+        min-height: 46px;
+    }
+    
+    .container {
+        padding: 1.25rem;
+    }
+}
+
+/* ===== TABLETS (768px - 1023px) ===== */
+@media (min-width: 768px) and (max-width: 1023px) {
+    h1 {
+        font-size: 2.2rem;
+        line-height: 1.1;
+    }
+    
+    h2 {
+        font-size: 1.8rem;
+        line-height: 1.2;
+    }
+    
+    h3 {
+        font-size: 1.4rem;
+        line-height: 1.3;
+    }
+    
+    button {
+        padding: 0.875rem 1.75rem;
+        font-size: 1.05rem;
+        min-height: 48px;
+    }
+    
+    .container {
+        padding: 1.5rem;
+    }
+}
+
+/* ===== DESKTOP (1024px y más) ===== */
+@media (min-width: 1024px) {
+    h1 {
+        font-size: 2.8rem;
+        line-height: 1.1;
+    }
+    
+    h2 {
+        font-size: 2.2rem;
+        line-height: 1.2;
+    }
+    
+    h3 {
+        font-size: 1.6rem;
+        line-height: 1.3;
+    }
+    
+    button {
+        padding: 1rem 2rem;
+        font-size: 1.1rem;
+        min-height: 52px;
+    }
+    
+    .container {
+        padding: 2rem;
+    }
+}
+
+/* ===== PANTALLAS MUY GRANDES (1440px y más) ===== */
+@media (min-width: 1440px) {
+    h1 {
+        font-size: 3.2rem;
+    }
+    
+    h2 {
+        font-size: 2.6rem;
+    }
+    
+    h3 {
+        font-size: 1.9rem;
+    }
+    
+    .container {
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+}
+
+/* ===== LANDSCAPE EN MÓVILES ===== */
+@media (orientation: landscape) and (max-height: 500px) {
+    .game-header {
+        padding: 0.5rem 0;
+    }
+    
+    .header-content {
+        padding: 0 0.75rem;
+    }
+    
+    .main-content {
+        padding: 0.5rem 0;
+    }
+    
+    button {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+        min-height: 40px;
+    }
+    
+    h1 {
+        font-size: 1.4rem;
+        margin-bottom: 0.25rem;
+    }
+    
+    h2 {
+        font-size: 1.2rem;
+        margin-bottom: 0.25rem;
+    }
+    
+    h3 {
+        font-size: 1rem;
+        margin-bottom: 0.25rem;
+    }
+}
+
+/* ===== ACCESIBILIDAD ===== */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ===== FOCUS VISIBLE ===== */
+button:focus-visible,
+input:focus-visible,
+a:focus-visible {
+    outline: 2px solid var(--primary-blue);
+    outline-offset: 2px;
+}
+
+/* ===== SCROLLBAR PERSONALIZADA ===== */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-medium);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--border-dark);
+}

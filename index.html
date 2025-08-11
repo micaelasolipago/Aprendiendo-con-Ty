@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Aprendiendo con Ty: Aventura Bilingüe</title>
+    
+    <!-- Favicon para evitar error 404 -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐶</text></svg>">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/components.css">
+    <link rel="stylesheet" href="styles/animations.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Botón de huella 3D para modo oscuro -->
+    <div class="paw-toggle" id="pawToggle">
+        <div class="paw-print">
+            <div class="paw-pad"></div>
+            <div class="paw-toe toe-1"></div>
+            <div class="paw-toe toe-2"></div>
+            <div class="paw-toe toe-3"></div>
+        </div>
+    </div>
+
+    <!-- Header principal -->
+    <header class="game-header">
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="ty-character">🐶</div>
+                <h1 class="game-title">Aprendiendo con Ty</h1>
+                <p class="game-subtitle">Aventura Bilingüe</p>
+            </div>
+            <nav class="main-nav">
+                <button class="nav-btn" data-section="home">Inicio</button>
+                <button class="nav-btn" data-section="levels">Niveles</button>
+                <button class="nav-btn" data-section="progress">Progreso</button>
+                <button class="nav-btn" data-section="settings">Configuración</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Contenido principal -->
+    <main class="main-content">
+        <!-- Pantalla de inicio -->
+        <section id="home" class="screen active">
+            <div class="welcome-container">
+                <div class="welcome-content">
+                    <div class="ty-welcome">
+                        <div class="ty-avatar">🐶</div>
+                        <h2>¡Hola! Soy Ty</h2>
+                        <p>Tu amigo rottweiler que te ayudará a aprender inglés de forma divertida</p>
+                    </div>
+                    
+                    <div class="age-selection">
+                        <h3>Selecciona tu edad para comenzar:</h3>
+                        <div class="age-buttons">
+                            <button class="age-btn" data-age="3-6">
+                                <span class="age-range">3-6 años</span>
+                                <span class="age-title">Exploradores de Sonidos</span>
+                                <span class="age-desc">Aprende con sonidos y colores</span>
+                            </button>
+                            <button class="age-btn" data-age="6-12">
+                                <span class="age-range">6-12 años</span>
+                                <span class="age-title">Constructores de Palabras</span>
+                                <span class="age-desc">Forma palabras y frases</span>
+                            </button>
+                            <button class="age-btn" data-age="12-18">
+                                <span class="age-range">12-18 años</span>
+                                <span class="age-title">Creadores de Historias</span>
+                                <span class="age-desc">Construye historias completas</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pantalla de niveles -->
+        <section id="levels" class="screen">
+            <div class="levels-container">
+                <div class="levels-header">
+                    <h2>Niveles de Aprendizaje</h2>
+                    <p>Elige tu nivel y comienza la aventura</p>
+                </div>
+                
+                <div class="levels-grid">
+                    <div class="level-card" data-level="1">
+                        <div class="level-icon">🎵</div>
+                        <h3>Nivel 1: Exploradores de Sonidos</h3>
+                        <p>Para niños de 3-6 años</p>
+                        <div class="level-features">
+                            <span>• Aprendizaje auditivo</span>
+                            <span>• Colores y formas</span>
+                            <span>• Animales básicos</span>
+                        </div>
+                        <button class="play-btn">Jugar</button>
+                    </div>
+                    
+                    <div class="level-card" data-level="2">
+                        <div class="level-icon">📝</div>
+                        <h3>Nivel 2: Constructores de Palabras</h3>
+                        <p>Para niños de 6-12 años</p>
+                        <div class="level-features">
+                            <span>• Formación de palabras</span>
+                            <span>• Frases sencillas</span>
+                            <span>• Vocabulario amplio</span>
+                        </div>
+                        <button class="play-btn">Jugar</button>
+                    </div>
+                    
+                    <div class="level-card" data-level="3">
+                        <div class="level-icon">📚</div>
+                        <h3>Nivel 3: Creadores de Historias</h3>
+                        <p>Para jóvenes de 12-18 años</p>
+                        <div class="level-features">
+                            <span>• Historias interactivas</span>
+                            <span>• Gramática avanzada</span>
+                            <span>• Comprensión lectora</span>
+                        </div>
+                        <button class="play-btn">Jugar</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pantalla de progreso -->
+        <section id="progress" class="screen">
+            <div class="progress-container">
+                <h2>Tu Progreso</h2>
+                <div class="progress-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">⭐</div>
+                        <div class="stat-info">
+                            <h3>Puntos Totales</h3>
+                            <p class="stat-value">0</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🎯</div>
+                        <div class="stat-info">
+                            <h3>Nivel Actual</h3>
+                            <p class="stat-value">1</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🏆</div>
+                        <div class="stat-info">
+                            <h3>Logros</h3>
+                            <p class="stat-value">0</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pantalla de configuración -->
+        <section id="settings" class="screen">
+            <div class="settings-container">
+                <h2>Configuración</h2>
+                <div class="settings-options">
+                    <div class="setting-item">
+                        <label>Volumen de Música</label>
+                        <input type="range" id="musicVolume" min="0" max="100" value="50">
+                    </div>
+                    <div class="setting-item">
+                        <label>Volumen de Efectos</label>
+                        <input type="range" id="sfxVolume" min="0" max="100" value="70">
+                    </div>
+                    <div class="setting-item">
+                        <label>Velocidad de Animaciones</label>
+                        <input type="range" id="animationSpeed" min="0.5" max="2" step="0.1" value="1">
+                    </div>
+                    <div class="setting-item">
+                        <button id="muteButton" class="mute-btn">
+                            <span class="mute-icon">🔊</span>
+                            <span class="mute-text">Silenciar Audio</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="game-footer">
+        <p>&copy; 2025 Deevty  Aprendiendo con Ty. Desarrollado con ❤️ para el aprendizaje bilingüe.</p>
+    </footer>
+
+    <!-- Huellas decorativas -->
+    <div class="paw-decorations">
+        <div class="paw-print decorative" style="top: 10%; left: 5%;"></div>
+        <div class="paw-print decorative" style="top: 20%; right: 10%;"></div>
+        <div class="paw-print decorative" style="bottom: 15%; left: 15%;"></div>
+        <div class="paw-print decorative" style="bottom: 25%; right: 5%;"></div>
+    </div>
+
+    <script src="js/audio.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>
