@@ -1263,8 +1263,10 @@ class TyGame {
                 }
                 
                 .game-content {
-                    padding: 1rem 0.75rem;
+                    padding: 1rem 0.75rem 2rem 0.75rem;
                     gap: 1.5rem;
+                    min-height: calc(100vh - 200px);
+                    justify-content: space-between;
                 }
                 
                 .question-container {
@@ -1310,17 +1312,25 @@ class TyGame {
                 
                 .feedback-container {
                     max-width: 100%;
+                    margin: 1rem 0;
+                    padding: 0 0.5rem;
                 }
                 
                 .feedback-message {
                     font-size: 1rem;
-                    padding: 0.75rem;
+                    padding: 1rem;
+                    margin-bottom: 1.5rem;
                 }
                 
                 .next-btn {
-                    padding: 0.875rem 1.5rem;
-                    font-size: 1rem;
-                    min-height: 44px;
+                    padding: 1rem 2rem;
+                    font-size: 1.1rem;
+                    min-height: 50px;
+                    margin: 1rem 0;
+                    width: 100%;
+                    max-width: 300px;
+                    border-radius: 16px;
+                    box-shadow: var(--shadow-md);
                 }
             }
             
@@ -1350,8 +1360,10 @@ class TyGame {
                 }
                 
                 .game-content {
-                    padding: 1.5rem;
+                    padding: 1.5rem 1.5rem 2.5rem 1.5rem;
                     gap: 2rem;
+                    min-height: calc(100vh - 250px);
+                    justify-content: space-between;
                 }
                 
                 .ty-game-character {
@@ -1380,6 +1392,17 @@ class TyGame {
                 .option-btn {
                     padding: 1.25rem;
                     font-size: 1.05rem;
+                }
+                
+                .next-btn {
+                    padding: 1.25rem 2.5rem;
+                    font-size: 1.2rem;
+                    min-height: 55px;
+                    margin: 1.5rem 0;
+                    width: 100%;
+                    max-width: 350px;
+                    border-radius: 18px;
+                    box-shadow: var(--shadow-lg);
                 }
             }
             

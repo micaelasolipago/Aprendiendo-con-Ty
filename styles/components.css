@@ -755,8 +755,12 @@
     }
     
     .welcome-content {
-        padding: 1rem 0.75rem;
+        padding: 1rem 0.75rem 2rem 0.75rem;
         text-align: center;
+        min-height: calc(100vh - 200px);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
     }
     
     .ty-avatar {
@@ -904,11 +908,30 @@
     
     /* Ajustar footer */
     .game-footer {
-        padding: 1rem 0.75rem;
+        padding: 1.5rem 0.75rem;
+        margin-top: auto;
     }
     
     .game-footer p {
         font-size: 0.8rem;
+        text-align: center;
+    }
+    
+    /* Mejorar espaciado general en móviles */
+    .main-content {
+        min-height: calc(100vh - 150px);
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .screen {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .screen.active {
+        display: flex;
     }
 }
 
@@ -936,6 +959,7 @@
     .progress-container,
     .settings-container {
         padding: 2rem;
+        min-height: calc(100vh - 250px);
     }
     
     .age-buttons {
