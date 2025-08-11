@@ -13,6 +13,13 @@ class TyGame {
         this.isGameActive = false;
         this.eventListenersConfigured = false;
         
+        // Nuevas propiedades para el botón Siguiente
+        this.nextButtonCountdown = null;
+        this.autoAdvanceTimer = null;
+        this.countdownDuration = 5; // segundos
+        this.enableAutoAdvance = true;
+        this.nextButtonSound = null;
+        
         this.init();
     }
     
@@ -934,7 +941,10 @@ class TyGame {
                 
                 <div class="feedback-container hidden" id="feedbackContainer">
                     <div class="feedback-message" id="feedbackMessage"></div>
-                    <button class="next-btn" id="nextBtn">Siguiente</button>
+                    <button class="next-btn" id="nextBtn">
+                        <span class="next-btn-text">Siguiente</span>
+                        <span class="next-btn-icon">→</span>
+                    </button>
                 </div>
             </div>
         `;
@@ -1189,19 +1199,105 @@ class TyGame {
             }
             
             .next-btn {
-                background: var(--primary-blue);
+                background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
                 color: white;
                 border: none;
-                padding: 1rem 2rem;
-                border-radius: 12px;
-                font-size: 1.1rem;
-                font-weight: 600;
-                transition: all var(--transition-fast);
+                padding: 1.25rem 2.5rem;
+                border-radius: 20px;
+                font-size: 1.2rem;
+                font-weight: 700;
+                font-family: 'Fredoka', sans-serif;
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                position: relative;
+                overflow: hidden;
+                box-shadow: 0 8px 25px rgba(79, 70, 229, 0.3);
+                letter-spacing: 0.5px;
+                text-transform: uppercase;
+                min-height: 60px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.5rem;
+                cursor: pointer;
+            }
+            
+            .next-btn::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+                transition: left 0.6s ease;
+            }
+            
+            .next-btn:hover::before {
+                left: 100%;
             }
             
             .next-btn:hover {
-                background: var(--primary-blue-hover);
-                transform: translateY(-2px);
+                background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+                transform: translateY(-4px) scale(1.05);
+                box-shadow: 0 12px 35px rgba(79, 70, 229, 0.4);
+            }
+            
+            .next-btn:active {
+                transform: translateY(-2px) scale(0.98);
+                box-shadow: 0 6px 20px rgba(79, 70, 229, 0.3);
+            }
+            
+            .next-btn.pulsing {
+                animation: pulse-glow 2s infinite;
+            }
+            
+            .next-btn.countdown {
+                background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+            }
+            
+            .next-btn.countdown::after {
+                content: attr(data-countdown);
+                position: absolute;
+                top: -8px;
+                right: -8px;
+                background: #ef4444;
+                color: white;
+                border-radius: 50%;
+                width: 24px;
+                height: 24px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 0.8rem;
+                font-weight: 700;
+                animation: bounce-countdown 1s infinite;
+            }
+            
+            .next-btn-icon {
+                font-size: 1.1rem;
+                transition: transform 0.3s ease;
+            }
+            
+            .next-btn:hover .next-btn-icon {
+                transform: translateX(3px);
+            }
+            
+            @keyframes pulse-glow {
+                0%, 100% {
+                    box-shadow: 0 8px 25px rgba(79, 70, 229, 0.3);
+                }
+                50% {
+                    box-shadow: 0 8px 25px rgba(79, 70, 229, 0.6), 0 0 20px rgba(79, 70, 229, 0.4);
+                }
+            }
+            
+            @keyframes bounce-countdown {
+                0%, 100% {
+                    transform: scale(1);
+                }
+                50% {
+                    transform: scale(1.1);
+                }
             }
             
             /* ===== RESPONSIVE DESIGN PARA EL JUEGO ===== */
@@ -1323,14 +1419,25 @@ class TyGame {
                 }
                 
                 .next-btn {
-                    padding: 1rem 2rem;
+                    padding: 1.25rem 2rem;
                     font-size: 1.1rem;
-                    min-height: 50px;
-                    margin: 1rem 0;
+                    min-height: 60px;
+                    margin: 1.5rem 0;
                     width: 100%;
-                    max-width: 300px;
-                    border-radius: 16px;
-                    box-shadow: var(--shadow-md);
+                    max-width: 320px;
+                    border-radius: 25px;
+                    box-shadow: 0 8px 25px rgba(79, 70, 229, 0.3);
+                    letter-spacing: 0.3px;
+                    position: relative;
+                }
+                
+                .next-btn.countdown::after {
+                    width: 28px;
+                    height: 28px;
+                    font-size: 0.9rem;
+                    top: -10px;
+                    right: -10px;
+                }
                 }
             }
             
@@ -1395,14 +1502,23 @@ class TyGame {
                 }
                 
                 .next-btn {
-                    padding: 1.25rem 2.5rem;
+                    padding: 1.5rem 2.5rem;
                     font-size: 1.2rem;
-                    min-height: 55px;
-                    margin: 1.5rem 0;
+                    min-height: 65px;
+                    margin: 2rem 0;
                     width: 100%;
-                    max-width: 350px;
-                    border-radius: 18px;
-                    box-shadow: var(--shadow-lg);
+                    max-width: 380px;
+                    border-radius: 30px;
+                    box-shadow: 0 10px 30px rgba(79, 70, 229, 0.35);
+                    letter-spacing: 0.4px;
+                }
+                
+                .next-btn.countdown::after {
+                    width: 30px;
+                    height: 30px;
+                    font-size: 1rem;
+                    top: -12px;
+                    right: -12px;
                 }
             }
             
@@ -1517,6 +1633,22 @@ class TyGame {
                     padding: 0.75rem;
                     font-size: 0.9rem;
                     min-height: 40px;
+                }
+                
+                .next-btn {
+                    padding: 1rem 1.5rem;
+                    font-size: 1rem;
+                    min-height: 50px;
+                    margin: 0.75rem 0;
+                    border-radius: 20px;
+                }
+                
+                .next-btn.countdown::after {
+                    width: 20px;
+                    height: 20px;
+                    font-size: 0.7rem;
+                    top: -6px;
+                    right: -6px;
                 }
             }
         `;
@@ -1788,6 +1920,7 @@ class TyGame {
     showFeedback(isCorrect, question) {
         const feedbackContainer = document.getElementById('feedbackContainer');
         const feedbackMessage = document.getElementById('feedbackMessage');
+        const nextBtn = document.getElementById('nextBtn');
         
         feedbackMessage.textContent = isCorrect 
             ? `¡Correcto! "${question.spanish}" se dice "${question.english}" en inglés.`
@@ -1795,6 +1928,9 @@ class TyGame {
         
         feedbackMessage.className = `feedback-message ${isCorrect ? 'correct' : 'incorrect'}`;
         feedbackContainer.classList.remove('hidden');
+        
+        // Configurar el botón Siguiente con nuevas funcionalidades
+        this.setupNextButton(isCorrect);
         
         // Reproducir sonido de feedback
         if (window.audioManager) {
@@ -1811,6 +1947,139 @@ class TyGame {
         if (window.animationManager) {
             window.animationManager.animateTyEmotion(isCorrect ? 'happy' : 'friendly');
         }
+    }
+    
+    // ===== CONFIGURACIÓN DEL BOTÓN SIGUIENTE =====
+    setupNextButton(isCorrect) {
+        const nextBtn = document.getElementById('nextBtn');
+        if (!nextBtn) return;
+        
+        // Limpiar timers anteriores
+        this.clearNextButtonTimers();
+        
+        // Configurar el botón según la respuesta
+        if (isCorrect) {
+            // Respuesta correcta: botón verde con pulso
+            nextBtn.classList.add('pulsing');
+            nextBtn.classList.remove('countdown');
+            nextBtn.style.background = 'linear-gradient(135deg, #059669 0%, #10b981 100%)';
+            
+            // Auto-avance más rápido para respuestas correctas
+            this.startAutoAdvance(3);
+        } else {
+            // Respuesta incorrecta: botón azul con countdown
+            nextBtn.classList.remove('pulsing');
+            nextBtn.classList.add('countdown');
+            nextBtn.style.background = 'linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%)';
+            
+            // Auto-avance más lento para respuestas incorrectas
+            this.startAutoAdvance(this.countdownDuration);
+        }
+        
+        // Agregar efectos de sonido al botón
+        this.addNextButtonSoundEffects(nextBtn);
+        
+        // Agregar efectos táctiles en móviles
+        this.addNextButtonTouchEffects(nextBtn);
+        
+        console.log('🎯 Botón Siguiente configurado con nuevas funcionalidades');
+    }
+    
+    startAutoAdvance(duration) {
+        if (!this.enableAutoAdvance) return;
+        
+        const nextBtn = document.getElementById('nextBtn');
+        if (!nextBtn) return;
+        
+        let countdown = duration;
+        
+        // Actualizar el countdown en el botón
+        const updateCountdown = () => {
+            if (nextBtn.classList.contains('countdown')) {
+                nextBtn.setAttribute('data-countdown', countdown);
+            }
+        };
+        
+        updateCountdown();
+        
+        this.nextButtonCountdown = setInterval(() => {
+            countdown--;
+            updateCountdown();
+            
+            if (countdown <= 0) {
+                this.clearNextButtonTimers();
+                this.nextQuestion();
+            }
+        }, 1000);
+        
+        // Efecto visual de countdown
+        this.autoAdvanceTimer = setTimeout(() => {
+            if (nextBtn.classList.contains('countdown')) {
+                nextBtn.style.animation = 'pulse-glow 0.5s infinite';
+            }
+        }, (duration - 2) * 1000);
+    }
+    
+    clearNextButtonTimers() {
+        if (this.nextButtonCountdown) {
+            clearInterval(this.nextButtonCountdown);
+            this.nextButtonCountdown = null;
+        }
+        if (this.autoAdvanceTimer) {
+            clearTimeout(this.autoAdvanceTimer);
+            this.autoAdvanceTimer = null;
+        }
+    }
+    
+    addNextButtonSoundEffects(button) {
+        // Sonido al hacer hover
+        button.addEventListener('mouseenter', () => {
+            if (window.audioManager) {
+                window.audioManager.playHover();
+            }
+        });
+        
+        // Sonido al hacer clic
+        button.addEventListener('click', () => {
+            if (window.audioManager) {
+                window.audioManager.playClick();
+                window.audioManager.playSuccess();
+            }
+            
+            // Efecto visual de clic
+            button.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                button.style.transform = '';
+            }, 150);
+        });
+    }
+    
+    addNextButtonTouchEffects(button) {
+        // Efectos táctiles para móviles
+        let touchStartTime = 0;
+        
+        button.addEventListener('touchstart', (e) => {
+            touchStartTime = Date.now();
+            button.style.transform = 'scale(0.98)';
+        });
+        
+        button.addEventListener('touchend', (e) => {
+            const touchDuration = Date.now() - touchStartTime;
+            
+            if (touchDuration < 200) {
+                // Tocar rápido - efecto de vibración
+                if (navigator.vibrate) {
+                    navigator.vibrate(50);
+                }
+            }
+            
+            button.style.transform = '';
+        });
+        
+        // Prevenir zoom en doble toque
+        button.addEventListener('touchend', (e) => {
+            e.preventDefault();
+        });
     }
     
     // ===== FUNCIONES DE AUDIO Y PISTAS =====
@@ -1935,6 +2204,18 @@ class TyGame {
     
     // ===== NAVEGACIÓN DE PREGUNTAS =====
     nextQuestion() {
+        // Limpiar timers del botón Siguiente
+        this.clearNextButtonTimers();
+        
+        // Resetear el botón Siguiente
+        const nextBtn = document.getElementById('nextBtn');
+        if (nextBtn) {
+            nextBtn.classList.remove('pulsing', 'countdown');
+            nextBtn.style.background = '';
+            nextBtn.style.animation = '';
+            nextBtn.removeAttribute('data-countdown');
+        }
+        
         this.currentQuestion++;
         
         const levelData = this.gameData[`level${this.currentLevel}`];
@@ -2083,6 +2364,9 @@ class TyGame {
     
     // ===== CIERRE DEL JUEGO =====
     closeGame() {
+        // Limpiar timers del botón Siguiente
+        this.clearNextButtonTimers();
+        
         const gameContainer = document.getElementById('gameContainer');
         gameContainer.classList.add('hidden');
         
@@ -2094,6 +2378,17 @@ class TyGame {
         }
         
         console.log('Juego cerrado');
+    }
+    
+    // ===== CONFIGURACIÓN DEL BOTÓN SIGUIENTE =====
+    setAutoAdvance(enabled) {
+        this.enableAutoAdvance = enabled;
+        console.log(`🔄 Auto-avance ${enabled ? 'habilitado' : 'deshabilitado'}`);
+    }
+    
+    setCountdownDuration(duration) {
+        this.countdownDuration = duration;
+        console.log(`⏱️ Duración del countdown establecida en ${duration} segundos`);
     }
     
     // ===== UTILIDADES =====
