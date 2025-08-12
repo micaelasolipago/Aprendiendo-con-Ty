@@ -5,8 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Aprendiendo con Ty</title>
     
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    
     <!-- Favicon para evitar error 404 -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐶</text></svg>">
+    
+    <!-- Meta tags para PWA -->
+    <meta name="theme-color" content="#2563eb">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Aprendiendo con Ty">
     
     <!-- CSS -->
     <link rel="stylesheet" href="styles/main.css">
@@ -50,8 +59,8 @@
                     <div class="ty-welcome">
                         <div class="ty-avatar" id="tyThemeToggle">🐶</div>
                         <h2>¡Hola! Soy Ty</h2>
-                        <p>Tu amigo rottweiler que te ayudará a aprender inglés de forma divertida</p>
-                        <p class="theme-hint">💡 Haz clic en Ty para cambiar el tema</p>
+                        <p>Tu amigo que te ayudará a aprender inglés de forma divertida</p>
+                      
                     </div>
                     
                     <div class="age-selection">
@@ -201,5 +210,20 @@
     <script src="js/app.js"></script>
     <script src="js/animations.js"></script>
     <script src="js/game.js"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then((registration) => {
+                        console.log('SW registrado: ', registration);
+                    })
+                    .catch((registrationError) => {
+                        console.log('SW registro falló: ', registrationError);
+                    });
+            });
+        }
+    </script>
 </body>
 </html>
