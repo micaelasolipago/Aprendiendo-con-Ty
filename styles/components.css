@@ -1,68 +1,25 @@
-/* ===== BOTÓN DE HUELLA 3D ===== */
-.paw-toggle {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 1000;
+/* ===== BOTÓN DE TEMA DE TY ===== */
+.ty-avatar {
+    font-size: 5.5rem;
+    filter: brightness(0.7) contrast(1.2);
+    margin-bottom: 1.5rem;
+    animation: bounce 2s infinite;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
     cursor: pointer;
-    transition: all var(--transition-normal);
 }
 
-.paw-toggle:hover {
-    transform: scale(1.1);
-}
-
-.paw-print {
-    width: 60px;
-    height: 60px;
-    position: relative;
-    background: var(--bg-card);
-    border: 2px solid var(--border-light);
-    border-radius: 50%;
-    box-shadow: var(--shadow-lg);
-    backdrop-filter: var(--blur-light);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all var(--transition-normal);
-}
-
-.paw-pad {
-    width: 25px;
-    height: 15px;
-    background: var(--text-primary);
-    border-radius: 50%;
-    position: absolute;
-    bottom: 8px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.paw-toe {
-    width: 8px;
-    height: 12px;
-    background: var(--text-primary);
-    border-radius: 50%;
-    position: absolute;
-    top: 8px;
-}
-
-.toe-1 {
-    left: 12px;
-}
-
-.toe-2 {
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.toe-3 {
-    right: 12px;
-}
-
-.paw-toggle:active .paw-print {
+.ty-avatar:active,
+.ty-avatar.pressing {
     transform: scale(0.95);
-    box-shadow: var(--shadow-sm);
+    animation: none;
+}
+
+.theme-hint {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-style: italic;
+    margin-top: 0.5rem;
+    opacity: 0.8;
 }
 
 /* ===== HEADER PRINCIPAL ===== */
@@ -934,34 +891,13 @@
         min-height: 44px;
     }
     
-    .paw-toggle {
-        top: 10px;
-        right: 10px;
+    .ty-avatar {
+        font-size: 4rem;
+        padding: 0.75rem;
     }
     
-    .paw-print {
-        width: 45px;
-        height: 45px;
-    }
-    
-    .paw-pad {
-        width: 20px;
-        height: 12px;
-        bottom: 6px;
-    }
-    
-    .paw-toe {
-        width: 6px;
-        height: 10px;
-        top: 6px;
-    }
-    
-    .toe-1 {
-        left: 10px;
-    }
-    
-    .toe-3 {
-        right: 10px;
+    .theme-hint {
+        font-size: 0.8rem;
     }
     
     /* Mejorar navegación táctil */

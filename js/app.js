@@ -11,7 +11,7 @@ class TyGameApp {
     init() {
         this.setupTheme();
         this.setupNavigation();
-        this.setupPawToggle();
+        this.setupTyThemeToggle();
         this.setupAgeSelection();
         this.setupLevelCards();
         this.setupSettings();
@@ -33,10 +33,10 @@ class TyGameApp {
         this.isTransitioning = true;
         document.body.classList.add('theme-transitioning');
         
-        // Animación del botón de huella
-        const pawToggle = document.getElementById('pawToggle');
-        if (pawToggle) {
-            pawToggle.classList.add('pressing');
+        // Animación del botón de Ty
+        const tyAvatar = document.getElementById('tyThemeToggle');
+        if (tyAvatar) {
+            tyAvatar.classList.add('pressing');
         }
         
         // Cambiar tema
@@ -52,8 +52,8 @@ class TyGameApp {
         
         // Remover clases de animación
         setTimeout(() => {
-            if (pawToggle) {
-                pawToggle.classList.remove('pressing');
+            if (tyAvatar) {
+                tyAvatar.classList.remove('pressing');
             }
             document.body.classList.remove('theme-transitioning');
             this.isTransitioning = false;
@@ -67,22 +67,16 @@ class TyGameApp {
     }
     
     updateThemeIcon() {
-        const pawToggle = document.getElementById('pawToggle');
-        if (!pawToggle) {
-            console.warn('Paw toggle element not found');
-            return;
-        }
-        
-        const pawPrint = pawToggle.querySelector('.paw-print');
-        if (!pawPrint) {
-            console.warn('Paw print element not found');
+        const tyAvatar = document.getElementById('tyThemeToggle');
+        if (!tyAvatar) {
+            console.warn('Ty avatar element not found');
             return;
         }
         
         if (this.currentTheme === 'dark') {
-            pawPrint.style.filter = 'brightness(1.2) contrast(0.8)';
+            tyAvatar.style.filter = 'brightness(1.2) contrast(0.8) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3))';
         } else {
-            pawPrint.style.filter = 'brightness(0.7) contrast(1.2)';
+            tyAvatar.style.filter = 'brightness(0.7) contrast(1.2) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1))';
         }
     }
     
@@ -227,16 +221,16 @@ class TyGameApp {
         });
     }
     
-    // ===== CONFIGURACIÓN DEL BOTÓN DE HUELLA =====
-    setupPawToggle() {
-        const pawToggle = document.getElementById('pawToggle');
+    // ===== CONFIGURACIÓN DEL BOTÓN DE TEMA DE TY =====
+    setupTyThemeToggle() {
+        const tyAvatar = document.getElementById('tyThemeToggle');
         
-        if (!pawToggle) {
-            console.warn('Paw toggle element not found for setup');
+        if (!tyAvatar) {
+            console.warn('Ty avatar element not found for setup');
             return;
         }
         
-        pawToggle.addEventListener('click', () => {
+        tyAvatar.addEventListener('click', () => {
             // Reproducir sonido de clic
             if (window.audioManager) {
                 window.audioManager.playClick();
@@ -246,18 +240,18 @@ class TyGameApp {
         });
         
         // Efecto hover con partículas
-        pawToggle.addEventListener('mouseenter', () => {
-            this.createPawParticles();
+        tyAvatar.addEventListener('mouseenter', () => {
+            this.createTyParticles();
         });
     }
     
-    createPawParticles() {
-        const pawToggle = document.getElementById('pawToggle');
-        if (!pawToggle) {
+    createTyParticles() {
+        const tyAvatar = document.getElementById('tyThemeToggle');
+        if (!tyAvatar) {
             return;
         }
         
-        const rect = pawToggle.getBoundingClientRect();
+        const rect = tyAvatar.getBoundingClientRect();
         
         for (let i = 0; i < 5; i++) {
             setTimeout(() => {
