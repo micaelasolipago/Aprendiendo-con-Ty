@@ -1,8 +1,8 @@
-# 🐶 Aprendiendo con Ty: Aventura Bilingüe
+# 🐶 Aprendiendo con Ty
 
 ## 📖 Descripción
 
-**Aprendiendo con Ty: Aventura Bilingüe** es un juego educativo interactivo diseñado para niños de habla hispana que quieren aprender inglés de forma divertida y efectiva. El juego presenta a Ty, un amigable rottweiler negro que guía a los jugadores a través de tres niveles de aprendizaje progresivo.
+**Aprendiendo con Ty** es un juego educativo interactivo diseñado para niños de habla hispana que quieren aprender inglés de forma divertida y efectiva. El juego presenta a Ty, un amigable rottweiler negro que guía a los jugadores a través de tres niveles de aprendizaje progresivo.
 
 ## 🎮 Características Principales
 

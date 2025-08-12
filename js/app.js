@@ -119,6 +119,8 @@ class TyGameApp {
     setupNavigation() {
         const navButtons = document.querySelectorAll('.nav-btn');
         const screens = document.querySelectorAll('.screen');
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const mainNav = document.getElementById('mainNav');
         
         navButtons.forEach(button => {
             button.addEventListener('click', (e) => {
@@ -130,11 +132,68 @@ class TyGameApp {
                 }
                 
                 this.navigateToSection(targetSection);
+                
+                // Cerrar menú móvil si está abierto
+                this.closeMobileMenu();
             });
         });
         
+        // Configurar menú móvil
+        if (mobileMenuToggle && mainNav) {
+            mobileMenuToggle.addEventListener('click', () => {
+                this.toggleMobileMenu();
+            });
+            
+            // Cerrar menú al hacer clic fuera
+            document.addEventListener('click', (e) => {
+                if (!mainNav.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                    this.closeMobileMenu();
+                }
+            });
+        }
+        
         // Marcar botón activo inicial
         this.updateActiveNavButton();
+    }
+    
+    toggleMobileMenu() {
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const mainNav = document.getElementById('mainNav');
+        
+        if (!mobileMenuToggle || !mainNav) return;
+        
+        const isOpen = mainNav.classList.contains('active');
+        
+        if (isOpen) {
+            this.closeMobileMenu();
+        } else {
+            this.openMobileMenu();
+        }
+    }
+    
+    openMobileMenu() {
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const mainNav = document.getElementById('mainNav');
+        
+        if (!mobileMenuToggle || !mainNav) return;
+        
+        mainNav.classList.add('active');
+        mobileMenuToggle.classList.add('active');
+        
+        // Reproducir sonido
+        if (window.audioManager) {
+            window.audioManager.playClick();
+        }
+    }
+    
+    closeMobileMenu() {
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const mainNav = document.getElementById('mainNav');
+        
+        if (!mobileMenuToggle || !mainNav) return;
+        
+        mainNav.classList.remove('active');
+        mobileMenuToggle.classList.remove('active');
     }
     
     navigateToSection(sectionName) {
