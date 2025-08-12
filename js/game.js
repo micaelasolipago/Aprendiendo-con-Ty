@@ -934,7 +934,7 @@ class TyGame {
                 
                 <div class="feedback-container hidden" id="feedbackContainer">
                     <div class="feedback-message" id="feedbackMessage"></div>
-                    <button class="next-btn" id="nextBtn">Siguiente</button>
+                    <button class="next-btn" id="nextBtn">→</button>
                 </div>
             </div>
         `;
@@ -1192,16 +1192,27 @@ class TyGame {
                 background: var(--primary-blue);
                 color: white;
                 border: none;
-                padding: 1rem 2rem;
-                border-radius: 12px;
-                font-size: 1.1rem;
-                font-weight: 600;
-                transition: all var(--transition-fast);
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                font-size: 1.5rem;
+                font-weight: bold;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.2s ease;
+                cursor: pointer;
+                box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
             }
             
             .next-btn:hover {
                 background: var(--primary-blue-hover);
-                transform: translateY(-2px);
+                transform: scale(1.1);
+                box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+            }
+            
+            .next-btn:active {
+                transform: scale(0.95);
             }
             
             /* ===== RESPONSIVE DESIGN PARA EL JUEGO ===== */
@@ -1318,9 +1329,9 @@ class TyGame {
                 }
                 
                 .next-btn {
-                    padding: 0.875rem 1.5rem;
-                    font-size: 1rem;
-                    min-height: 44px;
+                    width: 45px;
+                    height: 45px;
+                    font-size: 1.3rem;
                 }
             }
             
@@ -1410,6 +1421,12 @@ class TyGame {
                     padding: 1.5rem;
                     font-size: 1.1rem;
                 }
+                
+                .next-btn {
+                    width: 55px;
+                    height: 55px;
+                    font-size: 1.7rem;
+                }
             }
             
             /* ===== DESKTOP (1024px y más) ===== */
@@ -1439,6 +1456,12 @@ class TyGame {
                 .option-btn {
                     padding: 2rem;
                     font-size: 1.2rem;
+                }
+                
+                .next-btn {
+                    width: 60px;
+                    height: 60px;
+                    font-size: 2rem;
                 }
             }
             
@@ -1494,6 +1517,12 @@ class TyGame {
                     padding: 0.75rem;
                     font-size: 0.9rem;
                     min-height: 40px;
+                }
+                
+                .next-btn {
+                    width: 40px;
+                    height: 40px;
+                    font-size: 1.2rem;
                 }
             }
         `;
