@@ -59,11 +59,7 @@ class TyGameApp {
             this.isTransitioning = false;
         }, 500);
         
-        // Mostrar notificación
-        this.showNotification(
-            this.currentTheme === 'dark' ? 'Modo oscuro activado' : 'Modo claro activado',
-            'success'
-        );
+        // Notificación removida por solicitud del usuario
     }
     
     updateThemeIcon() {
