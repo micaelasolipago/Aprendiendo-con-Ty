@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ty-game-v1.0.0';
+const CACHE_NAME = 'ty-game-v1.1.0';
 const urlsToCache = [
   '/',
   '/index.html',
