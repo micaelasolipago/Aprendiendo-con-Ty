@@ -206,18 +206,30 @@
         <div class="paw-print decorative" style="bottom: 25%; right: 5%;"></div>
     </div>
 
-    <script src="js/audio.js?v=1.1"></script>
-    <script src="js/app.js?v=1.1"></script>
-    <script src="js/animations.js?v=1.1"></script>
-    <script src="js/game.js?v=1.1"></script>
+    <script src="js/audio.js?v=1.2"></script>
+    <script src="js/app.js?v=1.2"></script>
+    <script src="js/animations.js?v=1.2"></script>
+    <script src="js/game.js?v=1.2"></script>
     
     <!-- Service Worker Registration -->
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
+                // Limpiar cache antiguo
+                caches.keys().then(cacheNames => {
+                    cacheNames.forEach(cacheName => {
+                        if (cacheName.startsWith('ty-game-') && cacheName !== 'ty-game-v1.2.0') {
+                            caches.delete(cacheName);
+                            console.log('Cache eliminado:', cacheName);
+                        }
+                    });
+                });
+                
                 navigator.serviceWorker.register('/sw.js')
                     .then((registration) => {
                         console.log('SW registrado: ', registration);
+                        // Forzar actualización
+                        registration.update();
                     })
                     .catch((registrationError) => {
                         console.log('SW registro falló: ', registrationError);
