@@ -198,18 +198,12 @@
         <p>&copy; 2025 Solipago.  Aprendiendo con Ty. Desarrollado con ❤️ para el aprendizaje bilingüe.</p>
     </footer>
 
-    <!-- Huellas decorativas -->
-    <div class="paw-decorations">
-        <div class="paw-print decorative" style="top: 10%; left: 5%;"></div>
-        <div class="paw-print decorative" style="top: 20%; right: 10%;"></div>
-        <div class="paw-print decorative" style="bottom: 15%; left: 15%;"></div>
-        <div class="paw-print decorative" style="bottom: 25%; right: 5%;"></div>
-    </div>
 
-    <script src="js/audio.js?v=1.5.0"></script>
-    <script src="js/app.js?v=1.5.0"></script>
-    <script src="js/animations.js?v=1.5.0"></script>
-    <script src="js/game.js?v=1.5.0"></script>
+
+    <script src="js/audio.js?v=1.6.0"></script>
+    <script src="js/app.js?v=1.6.0"></script>
+    <script src="js/animations.js?v=1.6.0"></script>
+    <script src="js/game.js?v=1.6.0"></script>
     
     <!-- Service Worker Registration -->
     <script>
@@ -218,7 +212,7 @@
                 // Limpiar cache antiguo
                 caches.keys().then(cacheNames => {
                     cacheNames.forEach(cacheName => {
-                        if (cacheName.startsWith('ty-game-') && cacheName !== 'ty-game-v1.5.0') {
+                        if (cacheName.startsWith('ty-game-') && cacheName !== 'ty-game-v1.6.0') {
                             caches.delete(cacheName);
                             console.log('Cache eliminado:', cacheName);
                         }
